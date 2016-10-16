@@ -7,8 +7,39 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<header class="navbar navbar-default" role="navigation">
+    <div class="navbar-inner">
+      <div class="container">
+        <div id="logo" class="navbar-brand"><%= link_to "Wypok", root_path, class: "btn-default btn-outline my-radius none-underline" %></div>
+        <nav class="navbar-collapse navbar-ex1-collapse"> <!-- collapse  -->
+        	<% if user_signed_in? -%>
+						<ul class="nav navbar-nav pull-right">
+							<li><div class = "przycisk menu"><%= link_to '', new_link_path, class: "btn btn-default btn-outline btn-circle  glyphicon glyphicon-plus", title: "Dodaj link" %></div></li>
+							<li><div class = "przycisk menu"><%= link_to '', edit_user_registration_path, class: "btn btn-default btn-outline btn-circle  glyphicon glyphicon-cog", title: "Zmień ustawienia konta" %></div></li>
+							<li><div class = "przycisk menu"><%= link_to '', destroy_user_session_path, :method => :delete , class: "btn btn-default btn-outline btn-circle  glyphicon glyphicon-log-out", title: "Wyloguj" %></div></li>
+						</ul>
+					<% else -%>
+						<ul class="nav navbar-nav pull-right">
+							<li><div class = "przycisk menu"><%= link_to '', new_user_registration_path, class: "btn btn-default btn-outline btn-circle glyphicon glyphicon-user", title: "Zarejestruj" %></div></li>
+							<li><div class = "przycisk menu"><%= link_to '', new_user_session_path, class: "btn btn-default btn-outline btn-circle glyphicon glyphicon-log-in", title: "Zaloguj" %></div></li>
+						</ul>
+					<% end -%>
+        </nav>
+      </div>
+    </div>
+  </header>
 
-<%= yield %>
+	<div id="main_content"> <!-- class="container" -->
+		<div class="container">
+			<% flash.each do |name, msg| %>
+				<%= content_tag(:div, msg, class: "alert alert-info") %>
+			<% end %>
+		</div>
 
+			<div id="content" class="col-md-9 center-block">
+				<%= yield %>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
