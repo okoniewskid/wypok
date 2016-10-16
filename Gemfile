@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '= 5.0.0.beta3', '< 5.1'
+gem 'rails', '= 5.0.0', '< 5.1'
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master'
 # Use Puma as the app server
 gem 'puma'
@@ -29,7 +29,7 @@ gem 'jbuilder', '~> 2.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'devise', '~> 4.0.0.rc2'
-gem 'simple_form', '~> 3.2', '>= 3.2.1'
+gem 'simple_form'
 gem 'record_tag_helper', '~> 1.0'
 
 # Use Capistrano for deployment
@@ -53,13 +53,13 @@ group :development, :test do
 end
 
 group :production do
-  gem 'mongoid', :git => 'https://github.com/xzgyb/mongoid-for-rails5.git'
+  gem 'mongoid', git: 'https://github.com/mongodb/mongoid.git'
   gem 'rails_12factor', '0.0.2'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 3.0'
+  gem 'web-console'
   gem 'listen', '~> 3.0.5'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
