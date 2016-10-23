@@ -1,4 +1,4 @@
-Projekt zespołowy WYPOK
+Projekt zespołowy: Wypok
 
     Nazwa zespołu: KoD
 
