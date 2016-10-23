@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       put "like", to:    "links#upvote"
       put "dislike", to: "links#downvote"
     end
+    resources :comments
   end
   root to: "links#index"
   # The priority is based upon order of creation: first created -> highest priority.
