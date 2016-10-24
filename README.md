@@ -5,7 +5,6 @@ Projekt zespołowy: Wypok
     Opis Projektu: TBA
 
     Skład zespołu:
-        Marcin Kozina
         Łukasz Mielewczyk
         Daniel Okoniewski
         Michał Tyczyński
