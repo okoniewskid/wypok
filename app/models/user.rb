@@ -6,4 +6,6 @@ class User < ApplicationRecord
          
   has_many :links, :dependent => :delete_all
   has_many :comments, :dependent => :delete_all
+  
+  validates :name, presence: true, :uniqueness => true
 end

@@ -40,7 +40,7 @@
 </div>
 <%= simple_form_for [@link, Comment.new]  do |f| %>
   <div class="field">
-    <%= f.text_area :body, class: "form-control" %>
+    <%= f.text_area :body, class: "form-control", required: true %>
   </div>
   <br>
   <%= f.submit "Dodaj komentarz", class: "btn btn-primary" %>
