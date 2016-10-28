@@ -35,9 +35,6 @@
 <% end %>  
 </h3>
 
-<div id="comments">
-  <%= render :partial => @link.comments %>
-</div>
 <%= simple_form_for [@link, Comment.new]  do |f| %>
   <div class="field">
     <%= f.text_area :body, class: "form-control", required: true %>
@@ -45,3 +42,7 @@
   <br>
   <%= f.submit "Dodaj komentarz", class: "btn btn-primary" %>
 <% end %>
+<br>
+<div id="comments">
+  <%= render :partial => @link.comments %>
+</div>
