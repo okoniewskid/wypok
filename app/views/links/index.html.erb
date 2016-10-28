@@ -1,3 +1,9 @@
+<%= form_tag(links_path, :method => "get", id: "search-form") do %>
+  <ul class="nav navbar-nav pull-left width-search">
+    <li><%= text_field_tag :search, params[:search],  class: "navbar-left form-control", placeholder: "Szukaj" %></li>
+    <li><div class = "przycisk"><button type="submit" class="navbar-left btn btn-default btn-outline glyphicon glyphicon-search"></button></div></li>
+  </ul>
+<% end %>
 <% @links.each do |link| %>
   <div class="link row clearfix">
     <h2>
