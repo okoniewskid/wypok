@@ -8,3 +8,4 @@ Projekt zespołowy: Wypok
         Łukasz Mielewczyk
         Daniel Okoniewski
         Michał Tyczyński
+        Krystian Szewczyk
