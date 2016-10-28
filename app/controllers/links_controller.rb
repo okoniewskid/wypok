@@ -14,11 +14,13 @@ class LinksController < ApplicationController
 
   # GET /links/new
   def new
+    @blokadaURL = false
     @link = current_user.links.build
   end
 
   # GET /links/1/edit
   def edit
+    @blokadaURL = true
   end
 
   # POST /links
