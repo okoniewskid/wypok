@@ -11,9 +11,11 @@
   </ul>
 <% end %>
 <% @links.each do |link| %>
+  <% @object = LinkThumbnailer.generate(link.url) %>
   <div class="link row clearfix">
     <h2>
       <%= link_to link.title, link %><br>
+      <a href="<%= link.url %>" target="_blank" title="<%= link.title %>" ><img src="<%= @object.images.first.src.to_s %>" class="miniaturka" ></a></br>
       <small class="author">Przesłano <%= time_ago_in_words(link.created_at) %> przez <%= link.user.name %></small>
     </h2>
 
