@@ -5,7 +5,7 @@
     <% @e = true %>
 <% end %>
 <div class="page-header">
-  <h1><a href="<%= @link.url %>", target="_blank"><%= @link.title %></a><br>
+  <h1><a href="<%= @link.url %>", target="_blank"><%= @link.title %></a> <%= @link.ci_lower_bound(@link.get_upvotes.size, @link.get_upvotes.size+@link.get_downvotes.size, 0.95) %>%<br>
   <% if !@e && @object.images && @object.images.first %>
     <a href="<%= @link.url %>" target="_blank" title="<%= @link.title %>" ><img src="<%= @object.images.first.src.to_s %>" class="miniaturka" ></a>
   <% else %>
