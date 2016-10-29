@@ -8,6 +8,8 @@
   <h1><a href="<%= @link.url %>", target="_blank"><%= @link.title %></a><br>
   <% if !@e && @object.images && @object.images.first %>
     <a href="<%= @link.url %>" target="_blank" title="<%= @link.title %>" ><img src="<%= @object.images.first.src.to_s %>" class="miniaturka" ></a>
+  <% else %>
+    <a href="http://s10.ifotos.pl/img/brakzdjec_sapeppe.gif" target="_blank" title="<%= link.title %>" ><img src="<%= @object.images.first.src.to_s %>" class="miniaturka" ></a></br>
   <% end %>
   <br>
   <small>Przesłane przez <%= @link.user.name %></small></h1>
