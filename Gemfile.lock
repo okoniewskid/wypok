@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/svenfuchs/rails-i18n.git
-  revision: e990c989420f3695e0c7826d733ef604632f2e90
+  revision: cc8e1607e3fcf99ec9097a3b310c2079662e014a
   branch: master
   specs:
     rails-i18n (5.0.1)
@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: https://github.com/mongodb/mongoid.git
-  revision: 4642a3dd91cd99d49a90da96e527a2d2ceb12b68
+  revision: 093d64ef14e38740fae2bf0ad293ea2b3db0bf6e
   specs:
     mongoid (6.0.2)
       activemodel (~> 5.0)
@@ -138,7 +138,7 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
     minitest (5.9.1)
-    mongo (2.3.0)
+    mongo (2.3.1)
       bson (~> 4.1)
     multi_json (1.12.1)
     net-http-persistent (2.9.4)
@@ -237,7 +237,7 @@ GEM
       oga (~> 2.2)
     warden (1.2.6)
       rack (>= 1.0)
-    web-console (3.3.1)
+    web-console (3.4.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
       debug_inspector
@@ -287,4 +287,4 @@ DEPENDENCIES
   will_paginate-bootstrap!
 
 BUNDLED WITH
-   1.13.5
+   1.13.6
