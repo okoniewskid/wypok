@@ -32,14 +32,7 @@
 <% end %>
 
 <h3 class="comments_title">
-  <%= @link.comments.count %>
-  <% if @link.comments.count === 0 || @link.comments.count >= 5  %>
-    komentarzy
-  <% elsif @link.comments.count === 1 %>
-    komentarz
-  <% else %>
-    komentarze
-<% end %>  
+  <%= @link.comments.count %> <%= @jakikom %>
 </h3>
 
 <%= simple_form_for [@link, Comment.new]  do |f| %>

@@ -14,6 +14,13 @@ class LinksController < ApplicationController
   # GET /links/1
   # GET /links/1.json
   def show
+    if @link.comments.count === 0 || @link.comments.count >= 5
+      @jakikom = 'komentarzy'
+    elsif @link.comments.count === 1
+      @jakikom = 'komentarz'
+    else
+      @jakikom = 'komentarze'
+    end
   end
 
   # GET /links/new
