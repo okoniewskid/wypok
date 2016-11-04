@@ -1,6 +1,8 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
+  
+  include EmojiHelper
 
   def create
     @link = Link.find(params[:link_id])
@@ -36,6 +38,7 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
+      require ('emoticoner.rb')
       params.require(:comment).permit(:link_id, :body, :user_id)
     end
 end
