@@ -1,7 +1,7 @@
 <%= div_for(comment) do %>
 	<div class="comments_wrapper clearfix">
 		<div class="pull-left">
-			<p class="lead"><%= comment.body %></p>
+			<p class="lead"><%=sanitize comment.body %></p>
 			<p><small>Przesłano <strong><%= time_ago_in_words(comment.created_at) %></strong> przez <%= comment.user.name %></small></p>
 		</div>
 

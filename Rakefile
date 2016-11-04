@@ -4,5 +4,6 @@
 require File.expand_path('../config/application', __FILE__)
 
 load 'tasks/emoji.rake'
+#rake emoji 
 
 Rails.application.load_tasks

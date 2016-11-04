@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
   def create
     @link = Link.find(params[:link_id])
     @comment = @link.comments.new(comment_params)
+    @comment.body = emojify(@comment.body)
     @comment.user = current_user
 
     respond_to do |format|
@@ -38,7 +39,6 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      require ('emoticoner.rb')
       params.require(:comment).permit(:link_id, :body, :user_id)
     end
 end
