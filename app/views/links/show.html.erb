@@ -38,6 +38,7 @@
 <%= simple_form_for [@link, Comment.new]  do |f| %>
   <div class="field">
     <%= f.text_area :body, class: "form-control", required: true %>
+    <a class="btn btn-default" href="/pages/emoticons.html" target="_blank" title="Dostępne emotikony"><span class="fa fa-smile-o"></span></a>
   </div>
   <br>
   <%= f.submit "Dodaj komentarz", class: "btn btn-primary" %>
