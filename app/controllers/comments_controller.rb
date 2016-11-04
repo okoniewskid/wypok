@@ -3,11 +3,13 @@ class CommentsController < ApplicationController
   before_filter :authenticate_user!
   
   include EmojiHelper
+  include HashtagsHelper
 
   def create
     @link = Link.find(params[:link_id])
     @comment = @link.comments.new(comment_params)
     @comment.body = emojify(@comment.body)
+    @comment.body = linkify_hashtags(@comment.body)
     @comment.user = current_user
 
     respond_to do |format|
