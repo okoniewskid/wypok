@@ -1,12 +1,12 @@
 <%= div_for(comment) do %>
 	<div class="comments_wrapper clearfix">
 		<div class="pull-left">
-			<p class="lead"><%=sanitize comment.body %></p>
+			<p class="lead"><%= sanitize comment.body %></p>
 			<p><small>Przesłano <strong><%= time_ago_in_words(comment.created_at) %></strong> przez <%= comment.user.name %></small></p>
 		</div>
 
 		<div class="btn-group pull-right">
-			<% if comment.user == current_user -%>
+			<% if comment.user === current_user -%>
 				<%= link_to 'Usuń',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default" %>
 			<% end %>
 		</div>
