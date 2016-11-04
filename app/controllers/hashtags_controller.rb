@@ -1,7 +1,7 @@
 class HashtagsController < ApplicationController
 
   def index
-    @hashtags = SimpleHashtag::Hashtag.all
+    @hashtags = SimpleHashtag::Hashtag.all.sort { |x,y| x.name <=> y.name }
   end
 
   def show
