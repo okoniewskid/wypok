@@ -11,10 +11,7 @@ class CommentsController < ApplicationController
     @comment = @link.comments.new(comment_params)
     @comment.body = emojify(@comment.body)
     @comment.body = linkify_hashtags(@comment.body)
-    @comment.body = bold(@comment.body)
-    @comment.body = italic(@comment.body)
-    @comment.body = underline(@comment.body)
-    @comment.body = strikethrough(@comment.body)
+    @comment.body = bius(@comment.body)
     @comment.user = current_user
 
     respond_to do |format|
