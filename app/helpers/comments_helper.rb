@@ -1,4 +1,5 @@
 module CommentsHelper
+    
     def bius(content)
         content.to_str.gsub(/(\[\/?(b|i|u|s)\])/) do |match|
             case match
@@ -18,5 +19,11 @@ module CommentsHelper
                     "</span>"
             end
         end
+    end
+    
+    def enter(content)
+        content.to_str.gsub(/\n/) do |match|
+            %(<br>)
+        end.html_safe if content.present?
     end
 end

@@ -12,6 +12,7 @@ class CommentsController < ApplicationController
     @comment.body = emojify(@comment.body)
     @comment.body = linkify_hashtags(@comment.body)
     @comment.body = bius(@comment.body)
+    @comment.body = enter(@comment.body)
     @comment.user = current_user
 
     respond_to do |format|

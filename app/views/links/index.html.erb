@@ -17,9 +17,9 @@
   <div class="link row clearfix">
     <h2>
       <%= link_to link.title, link %> <%= link.ci_lower_bound(link.get_upvotes.size, link.get_upvotes.size+link.get_downvotes.size, 0.95) %>%
-      </br>
+      <br>
       <a href="<%= link.url %>" target="_blank" title="<%= link.title %>" ><img src="<%= link.generate_image(link) %>" class="miniaturka" ></a>
-      </br>
+      <br>
       <small class="author">Przesłano <%= time_ago_in_words(link.created_at) %> przez <%= link.user.name %></small>
     </h2>
 
