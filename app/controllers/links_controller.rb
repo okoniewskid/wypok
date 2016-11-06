@@ -5,9 +5,9 @@ class LinksController < ApplicationController
   # GET /links.json
   def index
     if params[:search]
-       @links = Link.all.search(params[:search])
+       @links = Link.paginate(:page => params[:page], :per_page => 10).search(params[:search])
     else
-       @links = Link.all
+       @links = Link.paginate(:page => params[:page], :per_page => 10)
     end
   end
 
