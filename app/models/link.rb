@@ -3,6 +3,9 @@ class Link < ApplicationRecord
     include SimpleHashtag::Hashtaggable
     belongs_to :user
     has_many :comments, :dependent => :delete_all
+   
+    validates :title, :url, presence: true
+    validates :url, format: { with: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/=]*)?/, message: "jest niewłaściwy" }
     
     def self.search(search)
         where("title LIKE ?", "%#{search}%") 
@@ -30,7 +33,4 @@ class Link < ApplicationRecord
             "http://s10.ifotos.pl/img/brakzdjec_sapeppe.gif"
         end
     end
-   
-    validates :title, :url, presence: true
-    validates :url, format: { with: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/=]*)?/, message: "jest niewłaściwy" }
 end
