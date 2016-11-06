@@ -30,7 +30,7 @@ class Link < ApplicationRecord
         if !@e && @object.images && @object.images.first
             @object.images.first.src.to_s
         else
-            "http://s10.ifotos.pl/img/brakzdjec_sapeppe.gif"
+            "/assets/brakzdjec_sapeppe.gif"
         end
     end
 end
