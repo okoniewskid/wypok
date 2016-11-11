@@ -35,7 +35,7 @@
 <% end %>
 
 <h3 class="comments_title">
-  <%= @link.comments.count %> <%= @jakikom %>
+  <%= @comments.count %> <%= @jakikom %>
 </h3>
 
 <%= simple_form_for [@link, Comment.new]  do |f| %>
@@ -52,7 +52,11 @@
 <% end %>
 <br>
 <div id="comments">
-  <%= render :partial => @link.comments %>
+  <%= render :partial => @comments %>
+</div>
+<div id="infinite-scrolling">
+  <%= will_paginate @comments, renderer: BootstrapPagination::Rails  %>
 </div>
 
 <%= javascript_include_tag "/assets/bius.js" %>
+<%= javascript_include_tag "/assets/infiniteScrolling.js" %>
