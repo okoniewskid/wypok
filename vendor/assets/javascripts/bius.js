@@ -1,4 +1,4 @@
-document.getElementById("boldButtom").addEventListener("click", function (event2)
+document.getElementById("boldButtom").addEventListener("click", (event) =>
 {
     var text = document.getElementById("myText");
     text.value = text.value.substring(0, text.selectionStart) +
@@ -6,7 +6,7 @@ document.getElementById("boldButtom").addEventListener("click", function (event2
     '[/b]'+text.value.substring(text.selectionEnd);
 });
             
-document.getElementById("italicButtom").addEventListener("click", function (event2)
+document.getElementById("italicButtom").addEventListener("click", (event) =>
 {
     var text = document.getElementById("myText");
     text.value = text.value.substring(0, text.selectionStart) +
@@ -14,7 +14,7 @@ document.getElementById("italicButtom").addEventListener("click", function (even
     '[/i]'+text.value.substring(text.selectionEnd);
 });
             
-document.getElementById("underlineButtom").addEventListener("click", function (event2)
+document.getElementById("underlineButtom").addEventListener("click", (event) =>
 {
     var text = document.getElementById("myText");
     text.value = text.value.substring(0, text.selectionStart) +
@@ -22,7 +22,7 @@ document.getElementById("underlineButtom").addEventListener("click", function (e
     '[/u]'+text.value.substring(text.selectionEnd);
 });
           
-document.getElementById("strikethroughButtom").addEventListener("click", function (event2)
+document.getElementById("strikethroughButtom").addEventListener("click", (event) =>
 {
     var text = document.getElementById("myText");
     text.value = text.value.substring(0, text.selectionStart) +

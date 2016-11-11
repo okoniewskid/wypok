@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/svenfuchs/rails-i18n.git
-  revision: cc8e1607e3fcf99ec9097a3b310c2079662e014a
+  revision: a13cc4a5642e3114bf75c304bea27e3f3d225625
   branch: master
   specs:
     rails-i18n (5.0.1)
@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: https://github.com/bootstrap-ruby/will_paginate-bootstrap
-  revision: 5fb486741b975f0971a7ab71bcb7b2b3162b5c0b
+  revision: 1a0d7b3af5a314f9046714c6356a750d0a6197e2
   specs:
     will_paginate-bootstrap (1.0.1)
       will_paginate (>= 3.0.3)
@@ -66,7 +66,7 @@ GEM
     ansi (1.5.0)
     arel (7.1.4)
     ast (2.3.0)
-    autoprefixer-rails (6.5.1.1)
+    autoprefixer-rails (6.5.3)
       execjs
     bcrypt (3.1.11)
     bootstrap-sass (3.3.7)

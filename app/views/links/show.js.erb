@@ -1,4 +1,4 @@
-$('#content').append('<div id="comments"><%= j render @comments %></div>');
+$('#comments').append('<div id="comments"><%= j render @comments %></div>');
 <% if @comments.next_page %>
     $('.pagination').replaceWith('<%= j will_paginate @comments, renderer: BootstrapPagination::Rails %>');
 <% else %>
