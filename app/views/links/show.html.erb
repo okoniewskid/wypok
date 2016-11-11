@@ -17,16 +17,18 @@
 	<%= link_to 'Podgląd', @link.url, class: "btn btn-primary", target: "_blank" %>
 </div>
 
-<div class="btn-group pull-right">
-  <%= link_to like_link_path(@link), method: :put, class: "btn btn-default btn-sm" do %>
-    <span class="glyphicon glyphicon-chevron-up"></span>
-    <%= @link.get_upvotes.size %>
-  <% end %>
-  <%= link_to dislike_link_path(@link), method: :put, class: "btn btn-default btn-sm" do %>
-    <span class="glyphicon glyphicon-chevron-down"></span>
-    <%= @link.get_downvotes.size %>
-  <% end %>
-</div>
+<% if user_signed_in? %>
+  <div class="btn-group pull-right">
+    <%= link_to like_link_path(@link), method: :put, class: "btn btn-default btn-sm" do %>
+      <span class="glyphicon glyphicon-chevron-up"></span>
+      <%= @link.get_upvotes.size %>
+    <% end %>
+    <%= link_to dislike_link_path(@link), method: :put, class: "btn btn-default btn-sm" do %>
+      <span class="glyphicon glyphicon-chevron-down"></span>
+      <%= @link.get_downvotes.size %>
+    <% end %>
+  </div>
+<% end %>
 
 <% if @link.user == current_user -%>
 	<div class="btn-group">
@@ -39,17 +41,19 @@
   <%= @comments.count %> <%= @jakikom %>
 </h3>
 
-<%= simple_form_for [@link, Comment.new]  do |f| %>
-  <div class="field">
-    <%= f.text_area :body, id: "myText",  class: "form-control", required: true %>
-    <a id="boldButtom" class="btn btn-default" title="Pogrubienie"><span class="fa fa-bold"></span></a>
-    <a id="italicButtom" class="btn btn-default" title="Kursywa"><span class="fa fa-italic"></span></a>
-    <a id="underlineButtom" class="btn btn-default" title="Podkreślenie"><span class="fa fa-underline"></span></a>
-    <a id="strikethroughButtom" class="btn btn-default" title="Przekreślenie"><span class="fa fa-strikethrough"></span></a>
-    <a class="btn btn-default" href="/pages/emoticons.html" target="_blank" title="Dostępne emotikony"><span class="fa fa-smile-o"></span></a>
-  </div>
-  <br>
-  <%= f.submit "Dodaj komentarz", class: "btn btn-primary" %>
+<% if user_signed_in? %>
+  <%= simple_form_for [@link, Comment.new]  do |f| %>
+    <div class="field">
+      <%= f.text_area :body, id: "myText",  class: "form-control", required: true %>
+      <a id="boldButtom" class="btn btn-default" title="Pogrubienie"><span class="fa fa-bold"></span></a>
+      <a id="italicButtom" class="btn btn-default" title="Kursywa"><span class="fa fa-italic"></span></a>
+      <a id="underlineButtom" class="btn btn-default" title="Podkreślenie"><span class="fa fa-underline"></span></a>
+      <a id="strikethroughButtom" class="btn btn-default" title="Przekreślenie"><span class="fa fa-strikethrough"></span></a>
+      <a class="btn btn-default" href="/pages/emoticons.html" target="_blank" title="Dostępne emotikony"><span class="fa fa-smile-o"></span></a>
+    </div>
+    <br>
+    <%= f.submit "Dodaj komentarz", class: "btn btn-primary" %>
+  <% end %>  
 <% end %>
 <br>
 <div id="comments">
