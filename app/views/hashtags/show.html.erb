@@ -1,8 +1,17 @@
+<%= stylesheet_link_tag "/assets/pagination.css" %>
+
 <h1><%= params[:hashtag] %></h1>
 <% if @hashtagged %>
-  <% @hashtagged.each do |hashtagged| %>
-    <%= render_hashtaggable hashtagged %>
-  <% end -%>
+  <div id="hashtagged">
+    <% @hashtagged.each do |hashtagged| %>
+      <%= render_hashtaggable hashtagged %>
+    <% end -%>
+  </div>
 <% else -%>
   <p>Brak wyników dla <em><%= params[:hashtag] %></em>.</p>
 <% end -%>
+<div id="infinite-scrolling">
+  <%= will_paginate @hashtagged, renderer: BootstrapPagination::Rails  %>
+</div>
+
+<%= javascript_include_tag "/assets/pagination.js" %>

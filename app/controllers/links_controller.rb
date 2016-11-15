@@ -14,12 +14,16 @@ class LinksController < ApplicationController
   # GET /links/1
   # GET /links/1.json
   def show
-    if @link.comments.count === 0 || @link.comments.count >= 5
+    if @comments.count === 0 || @comments.count >= 5
       @jakikom = 'komentarzy'
-    elsif @link.comments.count === 1
+    elsif @comments.count === 1
       @jakikom = 'komentarz'
     else
       @jakikom = 'komentarze'
+    end
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 
@@ -90,6 +94,7 @@ class LinksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_link
       @link = Link.find(params[:id])
+      @comments = @link.comments.paginate(page: params[:page], per_page: 10)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
