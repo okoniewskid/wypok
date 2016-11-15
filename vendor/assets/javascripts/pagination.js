@@ -5,11 +5,11 @@ $(() =>
 	{
 		$(window).on('scroll', () =>
 		{
-            var more_url = $('.pagination .next a').attr('href');
-    		if (more_url && $(window).scrollTop() > $(document).height() - $(window).height() - 60)
+            var more = $('.pagination .next a').attr('href');
+    		if (more && $(window).scrollTop() > $(document).height() - $(window).height() - 60)
     		{
       			$('.pagination').html('<img src="/assets/ajax-loader.gif" alt="Wczytywanie" title="Wczytywanie" />');
-    			$.getScript(more_url);
+    			$.getScript(more);
     		}
       		return;
 	    });
