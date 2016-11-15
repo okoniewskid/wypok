@@ -3,5 +3,5 @@ $('#comments').append('<div id="comments"><%= j render @comments %></div>');
     $('.pagination').replaceWith('<%= j will_paginate @comments, renderer: BootstrapPagination::Rails %>');
 <% else %>
     $(window).off('scroll');
-    $('.pagination').remove();
+    $('#infinite-scrolling').remove();
 <% end %>

@@ -8,7 +8,8 @@ $(() =>
             var more = $('.pagination .next a').attr('href');
     		if (more && $(window).scrollTop() > $(document).height() - $(window).height() - 60)
     		{
-      			$('.pagination').html('<img src="/assets/ajax-loader.gif" alt="Wczytywanie" title="Wczytywanie" />');
+      			$('#infinite-scrolling').html('<img src="/assets/ajax-loader.gif" alt="Wczytywanie" title="Wczytywanie" />');
+      			$('#infinite-scrolling').css('display', 'block');
     			$.getScript(more);
     		}
       		return;
