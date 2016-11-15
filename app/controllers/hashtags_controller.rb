@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class HashtagsController < ApplicationController
 
   def index
@@ -6,7 +8,11 @@ class HashtagsController < ApplicationController
 
   def show
     @hashtag = SimpleHashtag::Hashtag.find_by_name(params[:hashtag])
-    @hashtagged = @hashtag.hashtaggables if @hashtag
+    @hashtagged = @hashtag.hashtaggables.paginate(page: params[:page], per_page: 10) if @hashtag
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
 end

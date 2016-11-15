@@ -14,14 +14,14 @@
         <nav class="navbar-collapse navbar-ex1-collapse"> <!-- collapse  -->
         	<% if user_signed_in? %>
 						<ul class="nav navbar-nav pull-right">
-							<li><div class = "przycisk menu"><%= link_to '', new_link_path, class: "btn btn-default btn-outline btn-circle  glyphicon glyphicon-plus", title: "Dodaj link" %></div></li>
-							<li><div class = "przycisk menu"><%= link_to '', edit_user_registration_path, class: "btn btn-default btn-outline btn-circle  glyphicon glyphicon-cog", title: "Zmień ustawienia konta" %></div></li>
-							<li><div class = "przycisk menu"><%= link_to '', destroy_user_session_path, :method => :delete , class: "btn btn-default btn-outline btn-circle  glyphicon glyphicon-log-out", title: "Wyloguj" %></div></li>
+							<li><div><%= link_to '', new_link_path, class: "btn btn-default glyphicon glyphicon-plus", title: "Dodaj link" %></div></li>
+							<li><div><%= link_to '', edit_user_registration_path, class: "btn btn-default glyphicon glyphicon-cog", title: "Zmień ustawienia konta" %></div></li>
+							<li><div><%= link_to '', destroy_user_session_path, :method => :delete , class: "btn btn-default glyphicon glyphicon-log-out", title: "Wyloguj" %></div></li>
 						</ul>
 					<% else %>
 						<ul class="nav navbar-nav pull-right">
-							<li><div class = "przycisk menu"><%= link_to '', new_user_registration_path, class: "btn btn-default btn-outline btn-circle glyphicon glyphicon-user", title: "Zarejestruj" %></div></li>
-							<li><div class = "przycisk menu"><%= link_to '', new_user_session_path, class: "btn btn-default btn-outline btn-circle glyphicon glyphicon-log-in", title: "Zaloguj" %></div></li>
+							<li><div><%= link_to '', new_user_registration_path, class: "btn btn-default glyphicon glyphicon-user", title: "Zarejestruj" %></div></li>
+							<li><div><%= link_to '', new_user_session_path, class: "btn btn-default glyphicon glyphicon-log-in", title: "Zaloguj" %></div></li>
 						</ul>
 					<% end %>
         </nav>
