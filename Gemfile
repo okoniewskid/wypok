@@ -46,6 +46,7 @@ gem 'high_voltage'
 gem 'simple_hashtag'
 gem 'font-awesome-rails'
 gem 'link_thumbnailer'
+gem "paperclip", "~> 5.0.0"
 
 group :development, :test do
   gem 'byebug'
