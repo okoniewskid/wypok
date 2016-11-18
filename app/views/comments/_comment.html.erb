@@ -4,7 +4,7 @@
 			<% if @hashtagged %>
 				<h1><%= link_to comment.link.title, comment.link %></h1>
 			<% end %>
-			<%= image_tag comment.user.avatar.url, class: "avatar" %>
+			<%= image_tag comment.user.avatar.url, class: "avatar-com" %>
 			<p class="lead"><%= sanitize comment.body %></p>
 			<p><small>Przesłano <strong><%= time_ago_in_words(comment.created_at) %></strong> przez <%= comment.user.name %></small></p>
 		</div>
