@@ -1,0 +1,17 @@
+.com-row{
+    display: flex;
+    flex-direction: row;
+}
+
+.com-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name{
+    text-align: center;
+}
+
+.description{
+    margin-left: 5%;
+}
