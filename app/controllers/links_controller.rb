@@ -4,10 +4,33 @@ class LinksController < ApplicationController
   # GET /links
   # GET /links.json
   def index
+    @links = Link.paginate(:page => params[:page], :per_page => 10)
     if params[:search]
-       @links = Link.paginate(:page => params[:page], :per_page => 10).search(params[:search])
-    else
-       @links = Link.paginate(:page => params[:page], :per_page => 10)
+       @links = @links.search(params[:search])
+    elsif params[:sortDate]
+      if params[:sortDate] == "desc"
+        @links= @links.all.order('created_at DESC')
+        @sd = true;
+      else
+        @links= @links.all.order('created_at ASC')
+        @sd = false;
+      end
+    elsif params[:sortName]
+      if params[:sortName] == "desc"
+        @links= @links.order('title DESC')
+        @sn = true;
+      else
+        @links= @links.order('title ASC')
+        @sn = false;
+      end
+    elsif params[:sortVote]
+      if params[:sortVote] == "desc"
+        @links= @links.sort { |x,y| y <=> x  }
+        @sv = true;
+      else
+        @links= @links.sort { |x,y| x <=> y }
+        @sv = false;
+      end
     end
   end
 

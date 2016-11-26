@@ -1,4 +1,16 @@
 <%= stylesheet_link_tag "/assets/miniature.css" %>
+
+<% if @sd %>
+  <%= link_to 'Sortuj wg daty', { :sortDate => "asc" } %><br>
+<% else %>
+  <%= link_to 'Sortuj wg daty', { :sortDate => "desc" } %><br>
+<% end %>
+<% if @sn %>
+  <%= link_to 'Sortuj wg nazwy', { :sortName => "asc" } %><br>
+<% else %>
+  <%= link_to 'Sortuj wg nazwy', { :sortName => "desc" } %><br>
+<% end %>
+<%= link_to 'Sortuj wg oceny', { :sortVote => "asc" } %><br>
 <%= link_to '#', hashtags_path, class: "btn btn-default" %> 
 <%= form_tag(links_path, :method => "get", id: "search-form") do %>
 <ul class="nav navbar-nav pull-left">
