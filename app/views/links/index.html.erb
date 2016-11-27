@@ -1,6 +1,19 @@
 <%= stylesheet_link_tag "/assets/miniature.css" %>
 
+<%= link_to '#', hashtags_path, class: "btn btn-default" %> 
+</br>
 <%= form_tag(links_path, :method => "get") do %>
+  <ul class="nav navbar-nav pull-left">
+    <li>
+      <div class="input-group">
+        <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Szukaj" %>
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-default btn-outline"><span class="glyphicon glyphicon-search"></span></button>
+        </span>
+      </div>
+    </li>
+  </ul>
+  </br></br>
   <% if @sd %>
     <button type="submit" class="btn-link" name="sortDate" value="asc">Sortuj wg daty (rosnąco)</button></br>
   <% else %>
@@ -16,20 +29,7 @@
   <% else %>
     <button type="submit" class="btn-link" name="sortVote" value="desc">Sortuj wg oceny (malejąco)</button></br>
   <% end %>
-  <ul class="nav navbar-nav pull-left">
-    <li>
-      <div class="input-group">
-        <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Szukaj" %>
-        <span class="input-group-btn">
-          <button type="submit" class="btn btn-default btn-outline"><span class="glyphicon glyphicon-search"></span></button>
-        </span>
-      </div>
-    </li>
-  </ul>
 <% end %>
-</br>
-<%= link_to '#', hashtags_path, class: "btn btn-default" %> 
-<br><br>
 <%= will_paginate @links, :previous_label => 'Poprzedni', :next_label => 'Następny', renderer: BootstrapPagination::Rails %>
 <% @links.each do |link| %>
   <div class="link row clearfix">
