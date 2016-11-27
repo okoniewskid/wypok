@@ -74,6 +74,17 @@ class LinksController < ApplicationController
       format.html
       format.js
     end
+    case
+      when params[:sortDate]
+        case params[:sortDate]
+          when "desc"
+            @comments = @comments.order('created_at DESC')
+            @sd = true;
+          when "asc"
+            @comments = @comments.order('created_at ASC')
+            @sd = false;
+        end
+    end
   end
 
   # GET /links/new
