@@ -25,10 +25,10 @@ class LinksController < ApplicationController
       end
     elsif params[:sortVote]
       if params[:sortVote] == "desc"
-        @links= @links.sort { |x,y| y <=> x  }
+        @links= @links.order('(((cached_votes_up/(cached_votes_up + cached_votes_down)) + (1-(1-0.95)/2)*(1-(1-0.95)/2)/(2*(cached_votes_up + cached_votes_down)) - (1-(1-0.95)/2) * ((cached_votes_up/(cached_votes_up + cached_votes_down))*(1-(cached_votes_up/(cached_votes_up + cached_votes_down))+(1-(1-0.95)/2)*(1-(1-0.95)/2)/(4*(cached_votes_up + cached_votes_down)))/(cached_votes_up + cached_votes_down)))/((1-(1-0.95)/2)+(1-(1-0.95)/2)*(1-(1-0.95)/2)/(cached_votes_up + cached_votes_down))) DESC')
         @sv = true;
       else
-        @links= @links.sort { |x,y| x <=> y }
+        @links= @links.order('(((cached_votes_up/(cached_votes_up + cached_votes_down)) + (1-(1-0.95)/2)*(1-(1-0.95)/2)/(2*(cached_votes_up + cached_votes_down)) - (1-(1-0.95)/2) * ((cached_votes_up/(cached_votes_up + cached_votes_down))*(1-(cached_votes_up/(cached_votes_up + cached_votes_down))+(1-(1-0.95)/2)*(1-(1-0.95)/2)/(4*(cached_votes_up + cached_votes_down)))/(cached_votes_up + cached_votes_down)))/((1-(1-0.95)/2)+(1-(1-0.95)/2)*(1-(1-0.95)/2)/(cached_votes_up + cached_votes_down))) ASC')
         @sv = false;
       end
     end
