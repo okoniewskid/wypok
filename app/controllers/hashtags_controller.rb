@@ -16,10 +16,18 @@ class HashtagsController < ApplicationController
       when params[:sortCount]
         case params[:sortCount]
           when "asc"
-            @hashtags = SimpleHashtag::Hashtag.all.group('name').order('COUNT(id) ASC')
+            @hashtags = SimpleHashtag::Hashtag.all
+            .joins('LEFT JOIN simple_hashtag_hashtaggings ON
+            simple_hashtag_hashtaggings.hashtag_id = simple_hashtag_hashtags.id')
+            .group('simple_hashtag_hashtaggings.hashtag_id').
+            order('COUNT(simple_hashtag_hashtags.id) ASC')
             @sc = false;
           when "desc"
-            @hashtags = SimpleHashtag::Hashtag.all.group('name').order('COUNT(id) DESC')
+            @hashtags = SimpleHashtag::Hashtag.all
+            .joins('LEFT JOIN simple_hashtag_hashtaggings ON
+            simple_hashtag_hashtaggings.hashtag_id = simple_hashtag_hashtags.id')
+            .group('simple_hashtag_hashtaggings.hashtag_id').
+            order('COUNT(simple_hashtag_hashtags.id) DESC')
             @sc = true;
         end
       else
