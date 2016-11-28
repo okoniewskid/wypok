@@ -2,11 +2,22 @@
 <%= stylesheet_link_tag "/assets/pagination.css" %>
 
 <h1><%= params[:hashtag] %></h1>
+
+<%= form_tag(hashtag_path(params[:hashtag]), :method => "get") do %>
+  <% if @sd %>
+    <button type="submit" class="btn-link" name="sortDate" value="desc">Sortuj wg daty (malejąco)</button></br>
+  <% else %>
+    <button type="submit" class="btn-link" name="sortDate" value="asc">Sortuj wg daty (rosnąco)</button></br>
+  <% end %>
+<% end %>
+
 <% if @hashtagged %>
   <div id="hashtagged">
-    <% @hashtagged.each do |hashtagged| %>
-      <%= render_hashtaggable hashtagged %>
-    <% end -%>
+    <div id="comments">
+      <% @hashtagged.each do |hashtagged| %>
+        <%= render_hashtaggable hashtagged %>
+      <% end -%>
+    </div>
   </div>
 <% else -%>
   <p>Brak wyników dla <em><%= params[:hashtag] %></em>.</p>

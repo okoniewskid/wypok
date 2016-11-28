@@ -2,7 +2,7 @@
 
 <%= div_for(comment) do %>
 	<div class="comments_wrapper clearfix">
-		<div class="pull-left">
+		<div> <!-- class="pull-left" -->
 			<% if @hashtagged %>
 				<h1><%= link_to comment.link.title, comment.link %></h1>
 			<% end %>

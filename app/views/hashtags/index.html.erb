@@ -1,5 +1,17 @@
 <h1>Hasztagi</h1>
 <ul>
+<%= form_tag(@link, :method => "get") do %>
+  <% if @sn %>
+    <button type="submit" class="btn-link" name="sortName" value="asc">Sortuj wg nazwy (rosnąco)</button></br>
+  <% else %>
+    <button type="submit" class="btn-link" name="sortName" value="desc">Sortuj wg nazwy (malejąco)</button></br>
+  <% end %>
+  <% if @sc %>
+    <button type="submit" class="btn-link" name="sortCount" value="asc">Sortuj wg ilości (rosnąco)</button></br>
+  <% else %>
+    <button type="submit" class="btn-link" name="sortCount" value="desc">Sortuj wg ilości (malejąco)</button></br>
+  <% end %>
+<% end %>
 <% @hashtags.each do |hashtag| %>
   <li><%= link_to hashtag.name, hashtag_path(hashtag.name) %></li>
 <% end -%>
