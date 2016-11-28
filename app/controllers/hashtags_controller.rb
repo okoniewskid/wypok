@@ -40,15 +40,15 @@ class HashtagsController < ApplicationController
     case
       when params[:sortDate]
         case params[:sortDate]
-          when "desc"
-            @hashtagged = @hashtag.hashtaggables.paginate(page: params[:page], per_page: 10) if @hashtag
-            @sd = false;
           when "asc"
+            @hashtagged = @hashtag.hashtaggables.paginate(page: params[:page], per_page: 10) if @hashtag
+            @sd = false
+          when "desc"
             @hashtagged = @hashtag.hashtaggables.reverse.paginate(page: params[:page], per_page: 10) if @hashtag
-            @sd = true;
+            @sd = true
         end
       else
-        @hashtagged = @hashtag.hashtaggables.paginate(page: params[:page], per_page: 10) if @hashtag
+        @hashtagged = @hashtag.hashtaggables.reverse.paginate(page: params[:page], per_page: 10) if @hashtag
     end
     respond_to do |format|
       format.html
