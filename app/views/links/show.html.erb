@@ -8,7 +8,7 @@
     <a href="<%= @link.url %>", target="_blank"><%= @link.title %></a>
     <%= @link.ci_lower_bound(@link.get_upvotes.size, @link.get_upvotes.size+@link.get_downvotes.size, 0.95) %>%
     <br>
-    <a href="<%= @link.url %>" target="_blank" title="<%= @link.title %>" ><img src="<%= @link.generate_image(@link) %>" class="miniaturka" ><%=@link.opis %></a>
+    <a href="<%= @link.url %>" target="_blank" title="<%= @link.title %>" ><img src="<%= @link.generate_image(@link) %>" class="miniaturka" ><%=@link.description %></a>
     <br>
     <small>Przesłane przez <%= @link.user.name %></small>
   </h1>

@@ -17,17 +17,17 @@
   </div>
   
   <div class="form-group">
+    <%= f.label "Opis" %><br>
+    <%= f.text_area :description, class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
     <%= f.label "Link" %><br>
     <% if @blokadaURL %>
       <%= f.text_field :url, class: "form-control", readonly: true %>
     <% else %>
       <%= f.text_field :url, class: "form-control", required: true %>
     <% end %>
-  </div>
-  
-  <div class="form-group">
-    <%= f.label "Opis" %><br>
-    <%= f.text_field :opis, class: "form-control", required: true %>
   </div>
   
   <br>
