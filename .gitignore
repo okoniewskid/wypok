@@ -18,3 +18,5 @@
 
 #Ignore avatars
 /public/system
+
+#Ignore debuger
