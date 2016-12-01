@@ -12,7 +12,7 @@
 						<%= image_tag comment.user.avatar.url, class: "avatar-com" %></br>
 						<div class="user-name"><strong><%= comment.user.name %></strong></div>
 					</div>
-					<div class="description"><p class="lead"><%= sanitize comment.body %></p></div>
+					<div class="description-com"><p class="lead"><%= sanitize comment.body %></p></div>
 				</div>
 				<p><small>Przesłano <strong><%= time_ago_in_words(comment.created_at) %></strong> temu</small></p>
 			</div>

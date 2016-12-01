@@ -42,11 +42,12 @@ gem 'will_paginate-bootstrap', :git => 'https://github.com/bootstrap-ruby/will_p
 
 gem 'statistics2'
 gem 'gemoji'
+gem 'gemoji-parser'
 gem 'high_voltage'
 gem 'simple_hashtag'
 gem 'font-awesome-rails'
 gem 'link_thumbnailer'
-gem "paperclip", "~> 5.0.0"
+gem 'paperclip', '~> 5.0.0'
 
 group :development, :test do
   gem 'byebug'

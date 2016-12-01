@@ -1,4 +1,5 @@
 <%= stylesheet_link_tag "/assets/miniature.css" %>
+<%= stylesheet_link_tag "/assets/text.css" %>
 
 <%= link_to '#', hashtags_path, class: "btn btn-default" %> 
 </br>
@@ -36,7 +37,9 @@
     <h2>
       <%= link_to link.title, link %> <%= link.ci_lower_bound(link.get_upvotes.size, link.get_upvotes.size+link.get_downvotes.size, 0.95) %>%
       <br>
-      <a href="<%= link.url %>" target="_blank" title="<%= link.title %>" ><img src="<%= link.generate_image(link) %>" class="miniaturka" > <%= link_to link.description, link %></a>
+      <%= sanitize link.description %>
+      <br>
+      <a href="<%= link.url %>" target="_blank" title="<%= link.title %>" ><img src="<%= link.generate_image(link) %>" class="miniaturka" ></a>
       <br>
       <small class="author">Przesłano <%= time_ago_in_words(link.created_at) %> przez <%= link.user.name %></small>
     </h2>
