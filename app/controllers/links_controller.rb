@@ -1,6 +1,10 @@
 class LinksController < ApplicationController
+  
+  include HashtagsHelper
+    
   before_action :set_link, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
+  
   # GET /links
   # GET /links.json
   def index
@@ -96,13 +100,15 @@ class LinksController < ApplicationController
   # GET /links/1/edit
   def edit
     @blokadaURL = true
+    @link.description = EmojiParser.tokenize(@link.description)
   end
 
   # POST /links
   # POST /links.json
   def create
     @link = current_user.links.build(link_params)
-
+    @link.description = EmojiParser.detokenize(@link.description)
+    @link.description = linkify_hashtags(@link.description)
     respond_to do |format|
       if @link.save
         format.html { redirect_to @link, notice: 'Link został pomyślnie dodany.' }
@@ -117,8 +123,11 @@ class LinksController < ApplicationController
   # PATCH/PUT /links/1
   # PATCH/PUT /links/1.json
   def update
+    @lp = link_params
+    @lp[:description] = EmojiParser.detokenize(@lp[:description])
+    @lp[:description] = linkify_hashtags(@lp[:description])
     respond_to do |format|
-      if @link.update(link_params)
+      if @link.update(@lp)
         format.html { redirect_to @link, notice: 'Dane zostały pomyślnie edytowane.' }
         format.json { render :show, status: :ok, location: @link }
       else
@@ -159,7 +168,6 @@ class LinksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def link_params
-      params.require(:link).permit(:title, :url, :opis)
+      params.require(:link).permit(:title, :url, :description)
     end
-    
 end

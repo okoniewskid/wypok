@@ -1,27 +1,42 @@
 <%= stylesheet_link_tag "/assets/comment.css" %>
 
 <%= div_for(comment) do %>
-	<div class="comments_wrapper clearfix">
-		<div> <!-- class="pull-left" -->
-			<% if @hashtagged %>
+	<% if @hashtagged %>
+		<div class="comments_wrapper clearfix">
+			<div>
 				<h1><%= link_to comment.link.title, comment.link %></h1>
-			<% end %>
-			<div class="com-column">
-				<div class="com-row">
-					<div>
-						<%= image_tag comment.user.avatar.url, class: "avatar-com" %></br>
-						<div class="user-name"><strong><%= comment.user.name %></strong></div>
+				<div class="com-column">
+					<div class="com-row">
+						<div>
+							<%= image_tag comment.user.avatar.url, class: "avatar-com" %></br>
+							<div class="user-name"><strong><%= comment.user.name %></strong></div>
+						</div>
+						<div class="description-com"><p class="lead"><%= sanitize comment.body %></p></div>
 					</div>
-					<div class="description"><p class="lead"><%= sanitize comment.body %></p></div>
+					<p><small>Przesłano <strong><%= time_ago_in_words(comment.created_at) %></strong> temu</small></p>
 				</div>
-				<p><small>Przesłano <strong><%= time_ago_in_words(comment.created_at) %></strong> temu</small></p>
 			</div>
 		</div>
-
-		<div class="btn-group pull-right">
-			<% if comment.user === current_user && !@hashtagged %>
-				<%= link_to 'Usuń',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default" %>
-			<% end %>
+	<% else %>
+		<div class="comments_wrapper clearfix">
+			<div> <!--  class="pull-left"  -->
+				<div class="com-column">
+					<div class="com-row">
+						<div>
+							<%= image_tag comment.user.avatar.url, class: "avatar-com" %></br>
+							<div class="user-name"><strong><%= comment.user.name %></strong></div>
+						</div>
+						<div class="description-com"><p class="lead"><%= sanitize comment.body %></p></div>
+					</div>
+					<p><small>Przesłano <strong><%= time_ago_in_words(comment.created_at) %></strong> temu</small></p>
+				</div>
+			</div>
+	
+			<div class="btn-group pull-right">
+				<% if comment.user === current_user %>
+					<%= link_to 'Usuń',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default" %>
+				<% end %>
+			</div>
 		</div>
-	</div>
+	<% end %>
 <% end %>

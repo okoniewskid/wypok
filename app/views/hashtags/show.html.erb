@@ -1,5 +1,6 @@
 <%= stylesheet_link_tag "/assets/avatar.css" %>
 <%= stylesheet_link_tag "/assets/pagination.css" %>
+<%= stylesheet_link_tag "/assets/hashtag.css" %>
 
 <h1><%= params[:hashtag] %></h1>
 
@@ -13,7 +14,7 @@
 
 <% if @hashtagged %>
   <div id="hashtagged">
-    <div id="comments">
+    <div id="views-hashtags">
       <% @hashtagged.each do |hashtagged| %>
         <%= render_hashtaggable hashtagged %>
       <% end -%>
