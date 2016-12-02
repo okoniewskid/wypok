@@ -20,3 +20,4 @@
 /public/system
 
 #Ignore debuger
+.byebug_history 
