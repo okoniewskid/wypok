@@ -19,5 +19,5 @@
 #Ignore avatars
 /public/system
 
-#Ignore debuger
+# Ignore Byebug command history file.
 .byebug_history 
