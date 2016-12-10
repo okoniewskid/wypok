@@ -1,6 +1,8 @@
 class LinksController < ApplicationController
   
   include HashtagsHelper
+  include TextHelper
+  include EmojiParser
     
   before_action :set_link, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
@@ -100,15 +102,20 @@ class LinksController < ApplicationController
   # GET /links/1/edit
   def edit
     @blokadaURL = true
-    @link.description = EmojiParser.tokenize(@link.description)
+    @link.description = tokenize(@link.description)
+    @link.description = returnHashtags(@link.description)
+    @link.description = returnBIUS(@link.description)
+    @link.description = returnEnter(@link.description)
   end
 
   # POST /links
   # POST /links.json
   def create
     @link = current_user.links.build(link_params)
-    @link.description = EmojiParser.detokenize(@link.description)
+    @link.description = detokenize(@link.description)
     @link.description = linkify_hashtags(@link.description)
+    @link.description = convertBIUS(@link.description)
+    @link.description = convertEnter(@link.description)
     respond_to do |format|
       if @link.save
         format.html { redirect_to @link, notice: 'Link został pomyślnie dodany.' }
@@ -124,8 +131,10 @@ class LinksController < ApplicationController
   # PATCH/PUT /links/1.json
   def update
     @lp = link_params
-    @lp[:description] = EmojiParser.detokenize(@lp[:description])
+    @lp[:description] = detokenize(@lp[:description])
     @lp[:description] = linkify_hashtags(@lp[:description])
+    @lp[:description] = convertBIUS(@lp[:description])
+    @lp[:description]  = convertEnter(@lp[:description])
     respond_to do |format|
       if @link.update(@lp)
         format.html { redirect_to @link, notice: 'Dane zostały pomyślnie edytowane.' }

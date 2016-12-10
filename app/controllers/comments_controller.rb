@@ -4,15 +4,15 @@ class CommentsController < ApplicationController
   
   include EmojiHelper
   include HashtagsHelper
-  include CommentsHelper
+  include TextHelper
 
   def create
     @link = Link.find(params[:link_id])
     @comment = @link.comments.new(comment_params)
     @comment.body = emojify(@comment.body)
     @comment.body = linkify_hashtags(@comment.body)
-    @comment.body = bius(@comment.body)
-    @comment.body = enter(@comment.body)
+    @comment.body = convertBIUS(@comment.body)
+    @comment.body = convertEnter(@comment.body)
     @comment.user = current_user
 
     respond_to do |format|
