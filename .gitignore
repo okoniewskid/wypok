@@ -16,7 +16,7 @@
 !/log/.keep
 /tmp
 
-#Ignore avatars
+# Ignore avatars
 /public/system
 
 # Ignore Byebug command history file.
