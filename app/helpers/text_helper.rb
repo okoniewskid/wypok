@@ -1,7 +1,7 @@
 module TextHelper
 
     def returnHashtags(content)
-        content.to_str.gsub(/(<a class=\"hashtag\" href=\"\/hashtags\/.+?\"\> |<\/a>)/) do |match|
+        content.to_str.gsub(/(<a class=\"hashtag\" href=\"\/hashtags\/.+?\"\> |<\/a>)/) do
             ""
         end
     end
@@ -28,7 +28,7 @@ module TextHelper
     end
     
     def returnBIUS(content)
-        content.to_str.gsub(/(<\/?(b|i|u|s)>)/) do |match|
+        content.to_str.gsub(/\<\/?(b|i|span|span class='underline'|span class='strike')\>/) do |match|
             case match
                 when "<b>"
                     "[b]"
@@ -49,14 +49,14 @@ module TextHelper
     end
     
     def convertEnter(content)
-        content.to_str.gsub(/\n/) do |match|
+        content.to_str.gsub(/\n/) do
             '<br>'
         end.html_safe if content.present?
     end
     
     def returnEnter(content)
-        content.to_str.gsub('<\/?br>') do |match|
-            '\n'
+        content.to_str.gsub(/<\/?br\>/) do
+            %(\n)
         end.html_safe if content.present?
     end
     
