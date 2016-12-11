@@ -14,36 +14,40 @@ module TextHelper
                 when "[i]"
                     "<i>"
                 when "[u]"
-                    "<span class='underline'>"
+                    "<u>"
                 when "[s]"
-                    "<span class='strike'>"
+                    "<s>"
                 when "[/b]"
                     "</b>"
                 when "[/i]"
                     "</i>"
+                when "[/u]"
+                    "</u>"
                 else
-                    "</span>"
+                    "</s>"
             end
         end
     end
     
     def returnBIUS(content)
-        content.to_str.gsub(/\<\/?(b|i|span|span class='underline'|span class='strike')\>/) do |match|
+        content.to_str.gsub(/\<\/?(b|i|u|s)\>/) do |match|
             case match
                 when "<b>"
                     "[b]"
                 when "<i>"
                     "[i]"
-                when "<span class='underline'>"
+                when "<u>"
                     "[u]"
-                when "<span class='strike'>"
+                when "<s>"
                     "[s]"
                 when "</b>"
                     "[/b]"
                 when "</i>"
                     "[/i]"
-                else
+                when "</u>"
                     "[/u]"
+                else
+                    "[/s]"
             end
         end
     end
