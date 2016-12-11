@@ -2,15 +2,13 @@ require 'test_helper'
 
 class LinkTest < ActiveSupport::TestCase
   setup do
-    @link = links(:one)
+    @link1 = links(:one)
     @link2 = links(:two)
     @link3 = links(:three)
-    
-    @links = [@link1, @link2, @link3]
   end
   
   test "should validate link" do 
-    assert @link.valid?
+    assert @link1.valid?
   end
   
   test "should fail with invalid url" do
