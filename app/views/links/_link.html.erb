@@ -12,7 +12,7 @@
     						<div class="user-name"><strong><%= link.user.name %></strong></div>
     					</div>
     					<div class="description-hashtag">
-    					    <p class="lead"><%= sanitize link.description, tags: %w(b i u s a br) %></p></div>
+    					    <p class="lead"><%= sanitize link.description, tags: %w(b i u s a img br) %></p></div>
     				</div>
     				<p><small>Przesłano <strong><%= time_ago_in_words(link.created_at) %></strong> temu</small></p>
     			</div>
