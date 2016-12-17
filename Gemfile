@@ -48,6 +48,7 @@ gem 'simple_hashtag'
 gem 'font-awesome-rails'
 gem 'link_thumbnailer'
 gem 'paperclip', '~> 5.0.0'
+gem 'rolify'
 
 group :development, :test do
   gem 'byebug'
