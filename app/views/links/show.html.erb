@@ -12,7 +12,7 @@
     <br>
     <a href="<%= @link.url %>" target="_blank" title="<%= @link.title %>" ><img src="<%= @link.generate_image(@link) %>" class="miniaturka" ></a>
     <br>
-    <small>Przesłane przez <%= @link.user.name %></small>
+    <small>Przesłane przez <%= link_to @link.user.name, @link.user %></small>
   </h1>
 </div>
 

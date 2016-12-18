@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  
   get "hashtags/:hashtag",   to: "hashtags#show",      as: :hashtag
   get "hashtags",            to: "hashtags#index",     as: :hashtags
+  
   devise_for :users
     resources :links do
     member do
@@ -9,6 +11,9 @@ Rails.application.routes.draw do
     end
     resources :comments
   end
+  
+  get "users/:id",           to: "users#show",         as: :user
+
   root to: "links#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

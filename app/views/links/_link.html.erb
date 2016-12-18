@@ -8,8 +8,8 @@
     			<div class="com-column">
     				<div class="com-row">
     					<div>
-    						<%= image_tag link.user.avatar.url, class: "avatar-com" %></br>
-    						<div class="user-name"><strong><%= link.user.name %></strong></div>
+    						<%= link_to  image_tag(link.user.avatar.url, class: "avatar-com"), link.user %></br>
+    						<div class="user-name"><strong><%= link_to link.user.name, link.user %></strong></div>
     					</div>
     					<div class="description-hashtag">
     					    <p class="lead"><%= sanitize link.description, tags: %w(b i u s a img br) %></p></div>
