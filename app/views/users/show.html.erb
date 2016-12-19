@@ -1,1 +1,41 @@
-<%= @user.name %>
+<%= stylesheet_link_tag "/assets/avatar.css" %>
+<%= stylesheet_link_tag "/assets/miniature.css" %>
+
+  <div class="panel-body">
+    <div class="form-group">
+      <h3><%= @user.name %></h3>
+    </div>
+    <div class="form-group">
+    	<%= image_tag @user.avatar.url, class: "avatar-user" %>
+    </div>
+    <div class="form-group">
+      <%= mail_to @user.email %>
+    </div>
+    <% @links.each do |link| %>
+      <div class="link row clearfix">
+        <h2>
+          <%= link_to link.title, link %> <%= link.ci_lower_bound(link.get_upvotes.size, link.get_upvotes.size+link.get_downvotes.size, 0.95) %>%
+          <br>
+          <%= sanitize link.description, tags: %w(b i u s a br)%>
+          <br>
+          <a href="<%= link.url %>" target="_blank" title="<%= link.title %>" ><img src="<%= link.generate_image(link) %>" class="miniaturka" ></a>
+          <br>
+          <small class="author">Przesłano <%= time_ago_in_words(link.created_at) %> przez <%= link_to link.user.name, link.user %></small>
+        </h2>
+    
+        <div class="btn-group">
+          <a class="btn btn-default btn-sm" href="<%= link.url %>", target="_blank">Podgląd</a>
+          <% if user_signed_in? %>
+            <%= link_to like_link_path(link), method: :put, class: "btn btn-default btn-sm" do %>
+              <span class="glyphicon glyphicon-chevron-up"></span>
+              <%= link.get_upvotes.size %>
+            <% end %>
+            <%= link_to dislike_link_path(link), method: :put, class: "btn btn-default btn-sm" do %>
+              <span class="glyphicon glyphicon-chevron-down"></span>
+              <%= link.get_downvotes.size %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
