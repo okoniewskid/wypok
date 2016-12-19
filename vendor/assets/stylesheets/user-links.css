@@ -1,0 +1,8 @@
+.user-links {
+    display: flex;
+    flex-direction: row;
+}
+
+.links-show {
+    margin-left: 15%;
+}
