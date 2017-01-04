@@ -53,6 +53,9 @@ gem 'rolify'
 group :development, :test do
   gem 'byebug'
   gem 'sqlite3', '~> 1.3.11'
+  gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
+  gem 'capybara', '~> 2.11'
+  gem 'selenium-webdriver', '~> 3.0', '>= 3.0.5'
 end
 
 group :production do
