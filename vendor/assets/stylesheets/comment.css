@@ -1,17 +1,29 @@
-.com-row{
+.com-row {
     display: flex;
     flex-direction: row;
 }
 
-.com-column{
+.com-column {
     display: flex;
     flex-direction: column;
 }
 
-.user-name{
+.user-name {
     text-align: center;
 }
 
-.description-com{
+.description-com {
     margin-left: 1%;
+}
+
+.user-name-op {
+    text-align: center;
+}
+
+.com-row-op {
+    display: flex;
+    flex-direction: row;
+    border-style: inset;
+    border-left-color: red;
+    border-top-color: red;
 }

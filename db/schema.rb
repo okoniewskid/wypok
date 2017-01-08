@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20161217081907) do
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
     t.integer  "user_id"
+    t.text     "description",             default: ""
     t.integer  "cached_votes_total",      default: 0
     t.integer  "cached_votes_score",      default: 0
     t.integer  "cached_votes_up",         default: 0
@@ -35,7 +36,6 @@ ActiveRecord::Schema.define(version: 20161217081907) do
     t.integer  "cached_weighted_score",   default: 0
     t.integer  "cached_weighted_total",   default: 0
     t.float    "cached_weighted_average", default: 0.0
-    t.text     "description",             default: ""
     t.index ["cached_votes_down"], name: "index_links_on_cached_votes_down"
     t.index ["cached_votes_score"], name: "index_links_on_cached_votes_score"
     t.index ["cached_votes_total"], name: "index_links_on_cached_votes_total"
@@ -85,10 +85,7 @@ ActiveRecord::Schema.define(version: 20161217081907) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "name"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
+    t.string   "avatar"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
