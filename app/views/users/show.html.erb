@@ -23,6 +23,34 @@
     </div>
   </div>
   <div class="links-show">
+    <%= form_tag(@user, :method => "get") do %>
+  <ul class="nav navbar-nav pull-left">
+    <li>
+      <div class="input-group">
+        <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Szukaj" %>
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-default btn-outline"><span class="glyphicon glyphicon-search"></span></button>
+        </span>
+      </div>
+    </li>
+  </ul>
+  </br></br>
+  <% if @sd %>
+    <button type="submit" class="btn-link" name="sortDate" value="desc">Sortuj wg daty (malejąco)</button></br>
+  <% else %>
+    <button type="submit" class="btn-link" name="sortDate" value="asc">Sortuj wg daty (rosnąco)</button></br>
+  <% end %>
+  <% if @sn %>
+    <button type="submit" class="btn-link" name="sortName" value="desc">Sortuj wg nazwy (malejąco)</button></br>
+  <% else %>
+    <button type="submit" class="btn-link" name="sortName" value="asc">Sortuj wg nazwy (rosnąco)</button></br>
+  <% end %>
+  <% if @sv %>
+    <button type="submit" class="btn-link" name="sortVote" value="asc">Sortuj wg oceny (rosnąco)</button></br>
+  <% else %>
+    <button type="submit" class="btn-link" name="sortVote" value="desc">Sortuj wg oceny (malejąco)</button></br>
+  <% end %>
+<% end %>
     <% @links.each do |link| %>
       <div class="link row clearfix">
         <h2>
@@ -32,7 +60,7 @@
           <br>
           <a href="<%= link.url %>" target="_blank" title="<%= link.title %>" ><img src="<%= link.generate_image(link) %>" class="miniaturka" ></a>
           <br>
-          <small class="author">Przesłano <%= time_ago_in_words(link.created_at) %> przez <%= link.user.name %></small>
+          <small class="author">Przesłano <%= time_ago_in_words(link.created_at) %></small>
         </h2>
     
         <div class="btn-group">
