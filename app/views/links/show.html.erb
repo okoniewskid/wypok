@@ -33,7 +33,7 @@
   </div>
 <% end %>
 
-<% if @link.user == current_user -%>
+<% if @crud %>
 	<div class="btn-group">
 		<%= link_to 'Edytuj', edit_link_path(@link), class: "btn btn-default" %>
 		<%= link_to 'Usuń', @link, method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-default" %>
