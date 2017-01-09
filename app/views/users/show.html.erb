@@ -1,82 +1,62 @@
 <%= stylesheet_link_tag "/assets/avatar.css" %>
 <%= stylesheet_link_tag "/assets/link.css" %>
 <%= stylesheet_link_tag "/assets/miniature.css" %>
+<%= stylesheet_link_tag "/assets/pagination.css" %>
 <%= stylesheet_link_tag "/assets/user-links.css" %>
 
 <div class="user-links">
-  <div>
-    <div class="panel-body">
-      <% if @adminRole %>
-        <div class="form-group">
-          <h5 class="admin text-center">Administrator</h5>
-        </div>
-      <% end %>
-      <div class="form-group">
-        <h3 class="text-center"><%= @user.name %></h3>
+  <div class="panel-body">
+     <% if @adminRole %>
+       <div class="form-group">
+         <h5 class="admin text-center">Administrator</h5>
       </div>
-      <div class="form-group">
-      	<%= image_tag @user.avatar.url, class: "avatar-user" %>
-      </div>
-      <div class="form-group">
-        <span class="text-center"><%= mail_to @user.email %></span>
-      </div>
+    <% end %>
+    <div class="form-group">
+       <h3 class="text-center"><%= @user.name %></h3>
+     </div>
+    <div class="form-group">
+    	<%= image_tag @user.avatar.url, class: "avatar-user" %>
+    </div>
+    <div class="form-group">
+       <span class="text-center"><%= mail_to @user.email %></span>
     </div>
   </div>
   <div class="links-show">
     <%= form_tag(@user, :method => "get") do %>
-  <ul class="nav navbar-nav pull-left">
-    <li>
-      <div class="input-group">
-        <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Szukaj" %>
-        <span class="input-group-btn">
-          <button type="submit" class="btn btn-default btn-outline"><span class="glyphicon glyphicon-search"></span></button>
-        </span>
-      </div>
-    </li>
-  </ul>
-  </br></br>
-  <% if @sd %>
-    <button type="submit" class="btn-link" name="sortDate" value="desc">Sortuj wg daty (malejąco)</button></br>
-  <% else %>
-    <button type="submit" class="btn-link" name="sortDate" value="asc">Sortuj wg daty (rosnąco)</button></br>
-  <% end %>
-  <% if @sn %>
-    <button type="submit" class="btn-link" name="sortName" value="desc">Sortuj wg nazwy (malejąco)</button></br>
-  <% else %>
-    <button type="submit" class="btn-link" name="sortName" value="asc">Sortuj wg nazwy (rosnąco)</button></br>
-  <% end %>
-  <% if @sv %>
-    <button type="submit" class="btn-link" name="sortVote" value="asc">Sortuj wg oceny (rosnąco)</button></br>
-  <% else %>
-    <button type="submit" class="btn-link" name="sortVote" value="desc">Sortuj wg oceny (malejąco)</button></br>
-  <% end %>
-<% end %>
-    <% @links.each do |link| %>
-      <div class="link row clearfix">
-        <h2>
-          <%= link_to link.title, link %> <%= link.ci_lower_bound(link.get_upvotes.size, link.get_upvotes.size+link.get_downvotes.size, 0.95) %>%
-          <br>
-          <%= sanitize link.description, tags: %w(b i u s a br)%>
-          <br>
-          <a href="<%= link.url %>" target="_blank" title="<%= link.title %>" ><img src="<%= link.generate_image(link) %>" class="miniaturka" ></a>
-          <br>
-          <small class="author">Przesłano <%= time_ago_in_words(link.created_at) %></small>
-        </h2>
-    
-        <div class="btn-group">
-          <a class="btn btn-default btn-sm" href="<%= link.url %>", target="_blank">Podgląd</a>
-          <% if user_signed_in? %>
-            <%= link_to like_link_path(link), method: :put, class: "btn btn-default btn-sm" do %>
-              <span class="glyphicon glyphicon-chevron-up"></span>
-              <%= link.get_upvotes.size %>
-            <% end %>
-            <%= link_to dislike_link_path(link), method: :put, class: "btn btn-default btn-sm" do %>
-              <span class="glyphicon glyphicon-chevron-down"></span>
-              <%= link.get_downvotes.size %>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
+      <ul class="nav navbar-nav pull-left">
+        <li>
+          <div class="input-group">
+            <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Szukaj" %>
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-default btn-outline"><span class="glyphicon glyphicon-search"></span></button>
+            </span>
+          </div>
+        </li>
+      </ul>
+      </br></br>
+      <% if @sd %>
+        <button type="submit" class="btn-link" name="sortDate" value="desc">Sortuj wg daty (malejąco)</button></br>
+      <% else %>
+        <button type="submit" class="btn-link" name="sortDate" value="asc">Sortuj wg daty (rosnąco)</button></br>
+      <% end %>
+      <% if @sn %>
+        <button type="submit" class="btn-link" name="sortName" value="desc">Sortuj wg nazwy (malejąco)</button></br>
+      <% else %>
+        <button type="submit" class="btn-link" name="sortName" value="asc">Sortuj wg nazwy (rosnąco)</button></br>
+      <% end %>
+      <% if @sv %>
+        <button type="submit" class="btn-link" name="sortVote" value="asc">Sortuj wg oceny (rosnąco)</button></br>
+      <% else %>
+        <button type="submit" class="btn-link" name="sortVote" value="desc">Sortuj wg oceny (malejąco)</button></br>
+      <% end %>
     <% end %>
+    <div id="links">
+      <%= render :partial => @links %>
+    </div>
+    <div id="infinite-scrolling">
+      <%= will_paginate @links, renderer: BootstrapPagination::Rails %>
+    </div>
   </div>
 </div>
+  
+<%= javascript_include_tag "/assets/pagination.js" %>

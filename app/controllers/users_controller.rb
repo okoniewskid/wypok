@@ -6,7 +6,7 @@ class UsersController < ApplicationController
       else
         @adminRole = false
       end
-      @links = Link.all.where("user_id = "+params[:id])
+      @links = Link.all.where("user_id = "+params[:id]).paginate(:page => params[:page], :per_page => 10)
       case 
         when params[:search]
           @links = @links.search(params[:search])
@@ -59,6 +59,10 @@ class UsersController < ApplicationController
           end
       else
         @links= @links.all.order('created_at DESC')
+      end
+      respond_to do |format|
+          format.html
+          format.js
       end
     end
 end
