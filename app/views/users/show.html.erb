@@ -6,6 +6,11 @@
 <div class="user-links">
   <div>
     <div class="panel-body">
+      <% if @adminRole %>
+        <div class="form-group">
+          <h5 class="admin text-center">Administrator</h5>
+        </div>
+      <% end %>
       <div class="form-group">
         <h3 class="text-center"><%= @user.name %></h3>
       </div>
