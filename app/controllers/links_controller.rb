@@ -80,6 +80,18 @@ class LinksController < ApplicationController
       format.html
       format.js
     end
+    if current_user
+      u = User.find(current_user.id)
+      if u.has_role? :admin
+        @crud = true
+      elsif @link.user === u
+        @crud = true
+      else
+        @crud = false
+      end
+    else
+      @crud = false
+    end
     case
       when params[:sortDate]
         case params[:sortDate]
@@ -102,7 +114,7 @@ class LinksController < ApplicationController
   # GET /links/1/edit
   def edit
     @blokadaURL = true
-    @link.description = tokenize(@link.description)
+    @link.description = tokenize(@link.description || "")
     @link.description = returnHashtags(@link.description)
     @link.description = returnBIUS(@link.description)
     @link.description = returnEnter(@link.description)

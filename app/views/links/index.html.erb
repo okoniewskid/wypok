@@ -33,31 +33,5 @@
   <% end %>
 <% end %>
 <%= will_paginate @links, :previous_label => 'Poprzedni', :next_label => 'Następny', renderer: BootstrapPagination::Rails %>
-<% @links.each do |link| %>
-  <div class="link row clearfix">
-    <h2>
-      <%= link_to link.title, link %> <%= link.ci_lower_bound(link.get_upvotes.size, link.get_upvotes.size+link.get_downvotes.size, 0.95) %>%
-      <br>
-      <%= sanitize link.description, tags: %w(b i u s a br)%>
-      <br>
-      <a href="<%= link.url %>" target="_blank" title="<%= link.title %>" ><img src="<%= link.generate_image(link) %>" class="miniaturka" ></a>
-      <br>
-      <small class="author">Przesłano <%= time_ago_in_words(link.created_at) %> przez <%= link_to link.user.name, link.user %></small>
-    </h2>
-
-    <div class="btn-group">
-      <a class="btn btn-default btn-sm" href="<%= link.url %>", target="_blank">Podgląd</a>
-      <% if user_signed_in? %>
-        <%= link_to like_link_path(link), method: :put, class: "btn btn-default btn-sm" do %>
-          <span class="glyphicon glyphicon-chevron-up"></span>
-          <%= link.get_upvotes.size %>
-        <% end %>
-        <%= link_to dislike_link_path(link), method: :put, class: "btn btn-default btn-sm" do %>
-          <span class="glyphicon glyphicon-chevron-down"></span>
-          <%= link.get_downvotes.size %>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-<% end %>
+<%= render :partial => @links %>
 <%= will_paginate @links, :previous_label => 'Poprzedni', :next_label => 'Następny', renderer: BootstrapPagination::Rails %>
