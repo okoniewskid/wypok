@@ -112,6 +112,6 @@ class UsersController < ApplicationController
     def destroy
       @user = User.find(params[:id])
       @user.destroy
-      redirect_to users_path, :notice => "Konto zostało usunięte"
+      redirect_to users_path, :notice => "Konto zostało usunięte "
     end
 end
