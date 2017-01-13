@@ -5,6 +5,10 @@
   <div class="panel panel-default">
     <div class="panel-body">
       <div class="form-inputs">
+        <% if resource.has_role? :admin %>
+          <h3>Zarządzanie użytkownikami</h3>
+            <%= link_to '', users_path, class: "btn btn-primary fa fa-users", title: "Zarządzanie  użykownikami" %>
+        <% end %>
         <h3>Dane</h3> 
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {multipart: true, method: :put}) do |f| %>
           <div class="form-group">
