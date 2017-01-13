@@ -73,8 +73,8 @@
         <% end %>
       </div>
     </div>
-    <!-- <div class="panel-footer">
+    <div class="panel-footer">
       <h3>Usuń konto</h3>
-      <p></p>
-    </div> -->
+      <p><%= button_to "Usuń", @user, data: { confirm: "Na pewno?" }, method: :delete, class: "btn btn-danger" %></p>
+    </div>
   </div>
