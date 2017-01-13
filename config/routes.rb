@@ -12,8 +12,7 @@ Rails.application.routes.draw do
     resources :comments
   end
   
-  get "users/:id",           to: "users#show",         as: :user
-  get "users",               to: "users#index",        as: :users  
+  resources :users
 
   root to: "links#index"
   # The priority is based upon order of creation: first created -> highest priority.

@@ -88,4 +88,24 @@ class UsersController < ApplicationController
           format.js
       end
     end
+    
+    def edit
+      @user = User.find(params[:id])
+    end
+    
+    def update
+      @user = User.find(params[:id])
+      
+      if @user.update_attributes(params.require(:user).permit(:name, :email, :avatar, :password, :password_confirmation))
+        redirect_to users_path, :notice => "Dane zostały zmienione"
+      else
+			  case @user.errors.count
+			    when 1
+			      @jakiBlad = "błędu"
+			    else
+			      @jakiBlad = "błędów"
+			  end
+			  render "edit"
+      end
+    end
 end

@@ -6,6 +6,7 @@
       </br>
       <div class="user-name"><strong><%= link_to user.name, user %></strong></div>
       <div class="user-name"><%= link_to user.email, user %></div>
+      <div><%= link_to '', edit_user_path(user), class: "btn btn-default fa fa-wrench", title: "Zmień" %></div>
       </br>
     </div>
   </div>
