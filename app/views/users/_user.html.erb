@@ -1,0 +1,12 @@
+
+<%= div_for(user) do %>
+  <div class="comments_wrapper clearfix">
+    <div>
+      <%= link_to  image_tag(user.avatar.url, class: "avatar-com"), user %>
+      </br>
+      <div class="user-name"><strong><%= link_to user.name, user %></strong></div>
+      <div class="user-name"><%= link_to user.email, user %></div>
+      </br>
+    </div>
+  </div>
+<% end %>

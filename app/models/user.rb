@@ -29,5 +29,9 @@ class User < ApplicationRecord
     end 
     update_attributes(params) 
   end
+  
+  def self.search(search)
+      where("name LIKE ? or email LIKE ?", "%#{search}%", "%#{search}%") 
+  end
 
 end

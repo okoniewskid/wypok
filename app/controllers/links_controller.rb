@@ -61,8 +61,8 @@ class LinksController < ApplicationController
           else
             @links= @links.all.order('created_at DESC')
         end
-    else
-      @links= @links.all.order('created_at DESC')
+      else
+        @links= @links.all.order('created_at DESC')
     end
   end
 

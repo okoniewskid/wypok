@@ -1,4 +1,27 @@
 class UsersController < ApplicationController
+    def index
+      @users = User.paginate(:page => params[:page], :per_page => 20)
+      case 
+        when params[:search]
+          @users = @users.search(params[:search])
+          case
+            when params[:sortName]
+              case params[:sortName]
+                when "asc"
+                  @users= @users.order('name ASC')
+                  @sn = false;
+                when "desc"
+                  @users = @users.order('name DESC')
+                  @sn = true
+              end
+            else
+            @users = @users.all.order('name ASC')
+          end
+        else
+          @users = @users.all.order('name ASC')
+      end
+    end
+    
     def show
       @user = User.find(params[:id])
       if @user.has_role? :admin
