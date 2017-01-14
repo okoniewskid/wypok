@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     def index
-      @users = User.paginate(:page => params[:page], :per_page => 20)
+      @users = User.paginate(:page => params[:page], :per_page => 10)
       case 
         when params[:search]
           @users = @users.search(params[:search])
@@ -28,6 +28,21 @@ class UsersController < ApplicationController
         @adminRole = true
       else
         @adminRole = false
+      end
+      if @user.has_role? :email
+        @emailRole = true
+      else
+        @emailRole = false
+      end
+      if User.find(current_user.id).has_role? :admin
+        @iAdminRole = true;
+      else
+        @iAdminRole = false;
+      end
+      if @emailRole || @iAdminRole || @user.id === current_user.id
+        @viewEmail = true
+      else
+        @viewEmail = false
       end
       @links = Link.all.where("user_id = "+params[:id]).paginate(:page => params[:page], :per_page => 10)
       case 
