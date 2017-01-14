@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get "hashtags/:hashtag",   to: "hashtags#show",      as: :hashtag
   get "hashtags",            to: "hashtags#index",     as: :hashtags
   
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => "user/registrations" } 
     resources :links do
     member do
       put "like", to:    "links#upvote"
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :comments
   end
   
-  get "users/:id",           to: "users#show",         as: :user
+  resources :users
 
   root to: "links#index"
   # The priority is based upon order of creation: first created -> highest priority.

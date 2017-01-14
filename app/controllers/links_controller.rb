@@ -61,8 +61,8 @@ class LinksController < ApplicationController
           else
             @links= @links.all.order('created_at DESC')
         end
-    else
-      @links= @links.all.order('created_at DESC')
+      else
+        @links= @links.all.order('created_at DESC')
     end
   end
 
@@ -70,11 +70,11 @@ class LinksController < ApplicationController
   # GET /links/1.json
   def show
     if @comments.count === 0 || @comments.count >= 5
-      @jakikom = 'komentarzy'
+      @jakiKom = 'komentarzy'
     elsif @comments.count === 1
-      @jakikom = 'komentarz'
+      @jakiKom = 'komentarz'
     else
-      @jakikom = 'komentarze'
+      @jakiKom = 'komentarze'
     end
     respond_to do |format|
       format.html
@@ -133,6 +133,12 @@ class LinksController < ApplicationController
         format.html { redirect_to @link, notice: 'Link został pomyślnie dodany.' }
         format.json { render :show, status: :created, location: @link }
       else
+			  case @link.errors.count
+			    when 1
+			      @jakiBlad = "błędu"
+			    else
+			      @jakiBlad = "błędów"
+			  end
         format.html { render :new }
         format.json { render json: @link.errors, status: :unprocessable_entity }
       end
@@ -152,6 +158,12 @@ class LinksController < ApplicationController
         format.html { redirect_to @link, notice: 'Dane zostały pomyślnie edytowane.' }
         format.json { render :show, status: :ok, location: @link }
       else
+			  case @link.errors.count
+			    when 1
+			      @jakiBlad = "błędu"
+			    else
+			      @jakiBlad = "błędów"
+			  end
         format.html { render :edit }
         format.json { render json: @link.errors, status: :unprocessable_entity }
       end

@@ -20,6 +20,7 @@ class User < ApplicationRecord
     if self == User.first
       self.add_role(:admin) if self.roles.blank?
     end
+    self.add_role(:email) if self.roles.blank?
   end
   
   def update_with_password(params={}) 
@@ -29,5 +30,8 @@ class User < ApplicationRecord
     end 
     update_attributes(params) 
   end
-
+  
+  def self.search(search)
+      where("name LIKE ? or email LIKE ?", "%#{search}%", "%#{search}%") 
+  end
 end
