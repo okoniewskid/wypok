@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+include HashtagsHelper
+
     def index
       @users = User.paginate(:page => params[:page], :per_page => 10)
       case 
@@ -167,6 +169,12 @@ class UsersController < ApplicationController
     
     def destroy
       @user = User.find(params[:id])
+      @links = @user.links
+      @dl = @links.length - 1
+      for i in 0..@dl
+        destroy_hashtaggables(@links[i].comments.pluck('id'), 'Comment')
+      end
+      destroy_hashtaggables(@links.pluck('id'), 'Link')
       @user.destroy
       redirect_to users_path, :notice => "Konto zostało usunięte"
     end

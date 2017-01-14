@@ -1,7 +1,10 @@
 class User::RegistrationsController < Devise::RegistrationsController
 # before_action :configure_sign_up_params, only: [:create]
 # before_action :configure_account_update_params, only: [:update]
+include HashtagsHelper
+
 before_action :change_email, only: [:update]
+before_action :destroy_link_hashtag, only: [:destroy]
 
   private
   def change_email
@@ -14,6 +17,16 @@ before_action :change_email, only: [:update]
         resource.add_role(:email)
       end
     end
+  end
+  
+  private
+  def destroy_link_hashtag
+    @links = resource.links
+    @dl = @links.length - 1
+    for i in 0..@dl
+      destroy_hashtaggables(@links[i].comments.pluck('id'), 'Comment')
+    end
+    destroy_hashtaggables(@links.pluck('id'), 'Link')
   end
 
   # GET /resource/sign_up
