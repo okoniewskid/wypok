@@ -20,6 +20,7 @@ class User < ApplicationRecord
     if self == User.first
       self.add_role(:admin) if self.roles.blank?
     end
+    self.add_role(:email) if self.roles.blank?
   end
   
   def update_with_password(params={}) 

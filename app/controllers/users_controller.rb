@@ -101,6 +101,11 @@ class UsersController < ApplicationController
       else
         @blockRole = false
       end
+      if @user.has_role? :email
+        @emailRole = true
+      else
+        @emailRole = false
+      end
     end
     
     def update
@@ -122,6 +127,15 @@ class UsersController < ApplicationController
     	  else
           if @user.has_role? :block
             @user.remove_role(:block)
+          end
+        end
+        if params[:hiddenEmail]
+          if @user.has_role? :email
+            @user.remove_role(:email)
+          end
+        else
+          if !(@user.has_role? :email)
+            @user.add_role(:email)
           end
         end
         redirect_to users_path, :notice => "Dane zostały zmienione"

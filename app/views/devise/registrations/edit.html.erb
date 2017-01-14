@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag "/assets/avatar.css" %>
 
-<h2>Ustawienia</h2>
+  <h2>Ustawienia</h2>
   <%= devise_error_messages! %>
   <div class="panel panel-default">
     <div class="panel-body">
@@ -10,7 +10,7 @@
           <%= link_to '', users_path, class: "btn btn-primary fa fa-users", title: "Zarządzanie  użykownikami" %>
           <hr>
         <% end %>
-        <h3>Dane</h3> 
+        <h3>Ustawienia</h3> 
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {multipart: true, method: :put}) do |f| %>
           <div class="form-group">
             <%= f.label "Login" %>
@@ -19,6 +19,14 @@
           <div class="form-group">
             <%= f.label :email %>
             <%= f.email_field :email, class: "form-control", required: true %>
+          </div>
+          <div class="form-group">
+            <% if resource.has_role? :email %>
+              <input name="hiddenEmail" type="checkbox" value="true" />
+            <% else %>
+              <input name="hiddenEmail" type="checkbox" checked value="true" />
+            <% end %>
+             Ukryty email
           </div>
           <div class="form-group">
     	  	  <%= f.label "Awatar" %>

@@ -44,6 +44,14 @@
             <%= f.email_field :email, class: "form-control", required: true %>
           </div>
           <div class="form-group">
+            <% if @emailRole %>
+              <input name="hiddenEmail" type="checkbox" value="true" />
+            <% else %>
+              <input name="hiddenEmail" type="checkbox" checked value="true" />
+            <% end %>
+             Ukryty email
+          </div>
+          <div class="form-group">
     	  	  <%= f.label "Awatar" %>
     	  	  <br>
     	  	  <%= image_tag @user.avatar.url, class: "avatar-user" %>
