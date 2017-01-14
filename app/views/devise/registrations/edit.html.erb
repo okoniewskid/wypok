@@ -7,7 +7,8 @@
       <div class="form-inputs">
         <% if resource.has_role? :admin %>
           <h3>Zarządzanie użytkownikami</h3>
-            <%= link_to '', users_path, class: "btn btn-primary fa fa-users", title: "Zarządzanie  użykownikami" %>
+          <%= link_to '', users_path, class: "btn btn-primary fa fa-users", title: "Zarządzanie  użykownikami" %>
+          <hr>
         <% end %>
         <h3>Dane</h3> 
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {multipart: true, method: :put}) do |f| %>

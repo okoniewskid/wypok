@@ -91,12 +91,39 @@ class UsersController < ApplicationController
     
     def edit
       @user = User.find(params[:id])
+      if @user.has_role? :admin
+        @adminRole = true
+      else
+        @adminRole = false
+      end
+      if @user.has_role? :block
+        @blockRole = true
+      else
+        @block.Role = false
+      end
     end
     
     def update
       @user = User.find(params[:id])
-      
       if @user.update_attributes(params.require(:user).permit(:name, :email, :avatar, :password, :password_confirmation))
+        if params[:admin]
+          if !(@user.has_role? :admin)
+            @user.add_role(:admin)
+          end
+    	  else
+          if @user.has_role? :admin
+            @user.remove_role(:admin)
+          end
+        end
+        if params[:block]
+          if !(@user.has_role? :block)
+            @user.add_role(:block)
+          end
+    	  else
+          if @user.has_role? :block
+            @user.remove_role(:block)
+          end
+        end
         redirect_to users_path, :notice => "Dane zostały zmienione"
       else
 			  case @user.errors.count
@@ -112,6 +139,6 @@ class UsersController < ApplicationController
     def destroy
       @user = User.find(params[:id])
       @user.destroy
-      redirect_to users_path, :notice => "Konto zostało usunięte "
+      redirect_to users_path, :notice => "Konto zostało usunięte"
     end
 end

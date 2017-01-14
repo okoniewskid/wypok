@@ -18,8 +18,23 @@
   <div class="panel panel-default">
     <div class="panel-body">
       <div class="form-inputs">
-        <h3>Dane</h3> 
+        <h3>Ustawienia</h3> 
         <%= form_for(@user) do |f| %>
+          <div class="form-group">
+            <% if @adminRole %>
+              <input name="admin" type="checkbox" checked value="true" />
+            <% else %>
+              <input name="admin" type="checkbox" value="true" />
+            <% end %>
+             Administrator
+             </br>
+            <% if @blockRole %>
+              <input name="block" type="checkbox" checked value="true" />
+            <% else %>
+              <input name="block" type="checkbox" value="true" />
+            <% end %>
+             Zablokuj
+          </div>
           <div class="form-group">
             <%= f.label "Login" %>
             <%= f.text_field :name, class: "form-control", :autofocus => true, required: true %>
@@ -54,23 +69,25 @@
           <div class="form-group">
             <%= f.submit "Zmień", class: "btn btn-primary" %>
           </div>
-          <div class="form-group">
-            <b> Zarejestrowany: </b>
-            <%= @user.created_at %>
-            </br>
-            <b> Liczba logowań: </b>
-            <%= @user.sign_in_count %>
-            </br>
-            <b> Ostatnio zmieniono dane: </b>
-            <%= @user.updated_at %>
-            </br>
-             <b> Ostatnio zalogowany: </b>
-            <%= @user.current_sign_in_at %>
-            <b> z ip: </b>
-            <%= @user.current_sign_in_ip %>
-            </br>
-          </div>
         <% end %>
+        <hr>
+        <div class="form-group">
+          <h3>Informacje</h3> 
+          <b> Zarejestrowany: </b>
+          <%= @user.created_at %>
+          </br>
+          <b> Liczba logowań: </b>
+          <%= @user.sign_in_count %>
+          </br>
+          <b> Ostatnio zmieniono dane: </b>
+          <%= @user.updated_at %>
+          </br>
+          <b> Ostatnio zalogowany: </b>
+          <%= @user.current_sign_in_at %>
+          <b> z IP: </b>
+          <%= @user.current_sign_in_ip %>
+          </br>
+        </div>
       </div>
     </div>
     <div class="panel-footer">
