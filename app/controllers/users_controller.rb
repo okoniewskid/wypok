@@ -99,7 +99,7 @@ class UsersController < ApplicationController
       if @user.has_role? :block
         @blockRole = true
       else
-        @block.Role = false
+        @blockRole = false
       end
     end
     
