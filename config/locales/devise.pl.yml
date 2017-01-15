@@ -21,8 +21,8 @@ pl:
       timeout: 'Twoja sesja wygasła, zaloguj się ponownie aby kontynuować.'
       inactive: 'Twoje konto nie zostało jeszcze aktywowane.'
     sessions:
-      signed_in: 'Użytkownik został zalogowany.'
-      signed_out: 'Użytkownik został wylogowany.'
+      signed_in: 'Zostałeś zalogowany.'
+      signed_out: 'Zostałeś wylogowany.'
     passwords:
       send_instructions: 'Wkrótce powinieneś otrzymać email z instrukcją jak ustawić nowe hasło.'
       updated: 'Twoje hasło zostało zmienione.'
@@ -32,7 +32,7 @@ pl:
     registrations:
       signed_up: 'Rejestracja zakończyła się sukcesem.'
       updated: 'Twoje konto zostało pomyślnie zaktualizowane.'
-      destroyed: 'Papa! Twoje konto zostało usunięte. Mamy nadzieję, że spotkamy się jeszcze kiedyś!'
+      destroyed: 'Twoje konto zostało usunięte. Mamy nadzieję, że spotkamy się jeszcze kiedyś!'
     unlocks:
       send_instructions: 'Wkrótce powinieneś otrzymać email z instrukcją jak odblokować swoje konto.'
       unlocked: 'Twoje konto zostało odblokowane.'
