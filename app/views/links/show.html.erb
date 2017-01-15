@@ -6,13 +6,21 @@
 <div class="page-header">
   <h1>
     <a href="<%= @link.url %>", target="_blank"><%= @link.title %></a>
-    <%= @link.ci_lower_bound(@link.get_upvotes.size, @link.get_upvotes.size+@link.get_downvotes.size, 0.95) %>%
+    <font size="2">
+      <i>
+        <%= (@link.ci_lower_bound(@link.get_upvotes.size, @link.get_upvotes.size+@link.get_downvotes.size, 0.95)*0.1).round(2) %>/10
+      </i>
+    </font>
     <br>
-    <%= sanitize @link.description, tags: %w(b i u s a br) %>
+    <font size="5">
+      <%= sanitize @link.description, tags: %w(b i u s a br) %>
+    </font>
     <br>
     <a href="<%= @link.url %>" target="_blank" title="<%= @link.title %>" ><img src="<%= @link.generate_image(@link) %>" class="miniaturka" ></a>
     <br>
+  <font size="4">
     <small>Przesłane <strong><%= time_ago_in_words(@link.created_at) %></strong> temu przez <%= link_to @link.user.name, @link.user %></small>
+  </font>
   </h1>
 </div>
 

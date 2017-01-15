@@ -15,8 +15,22 @@
 							<%= link_to  image_tag(comment.user.avatar.url, class: "avatar-com"), comment.user %></br>
 							<div class="user-name"><strong><%= link_to comment.user.name, comment.user %></strong></div>
 						</div>
-						<div class="description-hashtag">
-							<p class="lead"><%= sanitize comment.body, tags: %w(b i u s a img br) %></p>
+						<div class="comment-container">
+							<div class="description-hashtag">
+								<p class="lead">
+									<%= sanitize comment.body, tags: %w(b i u s a img br) %>
+								</p>
+							</div>
+							<div class="btn-group">
+                <% if current_user %>
+                  <% u = User.find(current_user.id) %>
+                  <% if u.has_role? :admin %>
+                    <%= link_to 'Usuń',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default" %>
+                  <% elsif comment.user === u %>
+                    <%= link_to 'Usuń',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default" %>
+                  <% end %>
+                <% end %>
+              </div>
 						</div>
 					</div>
 					<p><small>Przesłano <strong><%= time_ago_in_words(comment.created_at) %></strong> temu</small></p>
@@ -36,25 +50,26 @@
 							<%= link_to  image_tag(comment.user.avatar.url, class: "avatar-com"), comment.user %></br>
 							<div class="user-name"><strong><%= link_to comment.user.name, comment.user %></strong></div>
 						</div>
-						<div class="description-com">
-							<p class="lead">
-								<%= sanitize comment.body, tags: %w(b i u s a img br) %>
-							</p>
+						<div class="comment-container">
+							<div class="description-com">
+								<p class="lead">
+									<%= sanitize comment.body, tags: %w(b i u s a img br) %>
+								</p>
+							</div>
+							<div class="btn-group">
+                <% if current_user %>
+                  <% u = User.find(current_user.id) %>
+                  <% if u.has_role? :admin %>
+                    <%= link_to 'Usuń',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default" %>
+                  <% elsif comment.user === u %>
+                    <%= link_to 'Usuń',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default" %>
+                  <% end %>
+                <% end %>
+              </div>
 						</div>
 					</div>
 					<p><small>Przesłano <strong><%= time_ago_in_words(comment.created_at) %></strong> temu</small></p>
 				</div>
-			</div>
-
-			<div class="btn-group pull-right">
-				<% if current_user %>
-					<% u = User.find(current_user.id) %>
-					<% if u.has_role? :admin %>
-						<%= link_to 'Usuń',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default" %>
-					<% elsif comment.user === u %>
-						<%= link_to 'Usuń',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default" %>
-					<% end %>
-				<% end %>
 			</div>
 		</div>
 	<% end %>
