@@ -6,9 +6,9 @@
 
 <%= form_tag(hashtag_path(params[:hashtag]), :method => "get") do %>
   <% if @sd %>
-    <button type="submit" class="btn-link" name="sortDate" value="asc">Sortuj wg daty (rosnąco)</button></br>
-  <% else %>
     <button type="submit" class="btn-link" name="sortDate" value="desc">Sortuj wg daty (malejąco)</button></br>
+  <% else %>
+    <button type="submit" class="btn-link" name="sortDate" value="asc">Sortuj wg daty (rosnąco)</button></br>
   <% end %>
 <% end %>
 

@@ -5,6 +5,11 @@ include HashtagsHelper
 
 before_action :change_email, only: [:update]
 before_action :destroy_link_hashtag, only: [:destroy]
+  
+  private
+  def after_update_path_for(resource)
+    edit_user_registration_path
+  end
 
   private
   def change_email
