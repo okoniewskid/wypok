@@ -35,7 +35,5 @@
 .com-row-op {
     display: flex;
     flex-direction: row;
-    border-style: inset;
-    border-left-color: red;
-    border-top-color: red;
+    background-color: #ffdac4
 }
