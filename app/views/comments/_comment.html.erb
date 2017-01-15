@@ -22,10 +22,15 @@
 								</p>
 							</div>
 							<div class="btn-group">
-								<% if comment.user === current_user %>
-								<%= link_to 'Usuń',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default" %>
-								<% end %>
-							</div>
+                <% if current_user %>
+                  <% u = User.find(current_user.id) %>
+                  <% if u.has_role? :admin %>
+                    <%= link_to 'Usuń',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default" %>
+                  <% elsif comment.user === u %>
+                    <%= link_to 'Usuń',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default" %>
+                  <% end %>
+                <% end %>
+              </div>
 						</div>
 					</div>
 					<p><small>Przesłano <strong><%= time_ago_in_words(comment.created_at) %></strong> temu</small></p>
@@ -52,10 +57,15 @@
 								</p>
 							</div>
 							<div class="btn-group">
-								<% if comment.user === current_user %>
-								<%= link_to 'Usuń',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default" %>
-								<% end %>
-							</div>
+                <% if current_user %>
+                  <% u = User.find(current_user.id) %>
+                  <% if u.has_role? :admin %>
+                    <%= link_to 'Usuń',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default" %>
+                  <% elsif comment.user === u %>
+                    <%= link_to 'Usuń',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default" %>
+                  <% end %>
+                <% end %>
+              </div>
 						</div>
 					</div>
 					<p><small>Przesłano <strong><%= time_ago_in_words(comment.created_at) %></strong> temu</small></p>

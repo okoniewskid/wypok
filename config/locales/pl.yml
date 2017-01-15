@@ -1,6 +1,19 @@
 ---
 pl:
   activerecord:
+    attributes:
+      link:
+        title: "Tytuł"
+        description: "Opis"
+        url: "Link"
+      comment:
+        body: "Treść"
+      user:
+        email: "Email"
+        name: "Login"
+        avatar: "Awatar"
+        password: "Hasło"
+        password_confirmation: "Potwierdzenie hasła"
     errors:
       messages:
         record_invalid: 'Negatywne sprawdzenie poprawności: %{errors}'
@@ -145,7 +158,7 @@ pl:
       not_an_integer: musi być liczbą całkowitą
       odd: musi być nieparzyste
       present: musi być puste
-      taken: zostało już zajęte
+      taken: został już zajęty
       too_long:
         few: jest za długie (maksymalnie %{count} znaki)
         many: jest za długie (maksymalnie %{count} znaków)

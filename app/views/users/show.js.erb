@@ -1,0 +1,7 @@
+$('#links').append('<div id="links"><%= j render @links %></div>');
+<% if @links.next_page %>
+    $('.pagination').replaceWith('<%= j will_paginate @links, renderer: BootstrapPagination::Rails %>');
+<% else %>
+    $(window).off('scroll');
+    $('#infinite-scrolling').remove();
+<% end %>

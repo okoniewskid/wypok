@@ -18,9 +18,9 @@
     <br>
     <a href="<%= @link.url %>" target="_blank" title="<%= @link.title %>" ><img src="<%= @link.generate_image(@link) %>" class="miniaturka" ></a>
     <br>
-    <font size="4">
-      <small>Przesłane przez <%= link_to @link.user.name, @link.user %></small>
-    </font>
+  <font size="4">
+    <small>Przesłane <strong><%= time_ago_in_words(@link.created_at) %></strong> temu przez <%= link_to @link.user.name, @link.user %></small>
+  </font>
   </h1>
 </div>
 
@@ -41,7 +41,7 @@
   </div>
 <% end %>
 
-<% if @link.user == current_user -%>
+<% if @crud %>
 	<div class="btn-group">
 		<%= link_to 'Edytuj', edit_link_path(@link), class: "btn btn-default" %>
 		<%= link_to 'Usuń', @link, method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-default" %>
@@ -57,7 +57,7 @@
 <% end %>
 
 <h3 class="comments_title">
-  <%= @comments.count %> <%= @jakikom %>
+  <%= @comments.count %> <%= @jakiKom %>
 </h3>
 
 <% if user_signed_in? %>
