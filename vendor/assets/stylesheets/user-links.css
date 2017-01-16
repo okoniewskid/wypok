@@ -6,3 +6,12 @@
 .links-show {
     margin-left: 15%;
 }
+
+.admin {
+    color: #FF0000;
+    background-color: #FFFF00;
+    padding: 2px;
+    font-size: 12px;
+    font-weight: bold;
+    font-style: italic;
+}

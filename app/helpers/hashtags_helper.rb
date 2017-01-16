@@ -24,6 +24,8 @@ module HashtagsHelper
           @st += 'hashtaggable_id = ' + ids[i].to_s
         end
       end
-      SimpleHashtag::Hashtagging.delete_all "hashtaggable_type = '"+type+"' AND ("+@st+")"
+      if @st != ''
+        SimpleHashtag::Hashtagging.delete_all "hashtaggable_type = '"+type+"' AND ("+@st+")"
+      end
   end
 end

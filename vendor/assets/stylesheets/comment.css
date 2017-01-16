@@ -3,8 +3,15 @@
     flex-direction: row;
 }
 
+.comment-container {
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+}
+
 .com-column {
     display: flex;
+    justify-content: space-around;
     flex-direction: column;
 }
 
@@ -14,6 +21,11 @@
 
 .description-com {
     margin-left: 1%;
+    width: 100%;
+}
+
+.description-hashtag {
+    width: 100%;
 }
 
 .user-name-op {
@@ -23,7 +35,5 @@
 .com-row-op {
     display: flex;
     flex-direction: row;
-    border-style: inset;
-    border-left-color: red;
-    border-top-color: red;
+    background-color: #ffdac4
 }

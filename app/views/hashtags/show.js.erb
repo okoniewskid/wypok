@@ -1,4 +1,4 @@
-$('#hashtagged').append('<div id="comments"><%= j render @hashtagged %></div>');
+$('#hashtagged').append('<div id="hashtagged"><%= j render @hashtagged %></div>');
 <% if @hashtagged.next_page %>
     $('.pagination').replaceWith('<%= j will_paginate @hashtagged, renderer: BootstrapPagination::Rails %>');
 <% else %>
