@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  
-  resources :posts
+    
   get "hashtags/:hashtag",   to: "hashtags#show",      as: :hashtag
   get "hashtags",            to: "hashtags#index",     as: :hashtags
   
@@ -11,6 +10,10 @@ Rails.application.routes.draw do
       put "dislike", to: "links#downvote"
     end
     resources :comments
+  end
+  
+  resources :posts do
+  # resources :comments
   end
   
   resources :users
