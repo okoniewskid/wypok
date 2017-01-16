@@ -27,8 +27,8 @@ RSpec.describe Link, :type => :model do
            expect(subject).not_to be_valid
         end
         
-        it 'should have domain name and extension', :skip => 'trzeba naprawic walidacje url, mozna dodac link bez nazwy lub rozszerzenia domeny' do
-           subject.url = 'http://www.google' 
+        it 'should have domain name and extension' do
+           subject.url = 'http://google' 
            expect(subject).not_to be_valid
         end
     end

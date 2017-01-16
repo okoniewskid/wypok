@@ -56,6 +56,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.4', '>= 3.4.2'
   gem 'capybara', '~> 2.11'
   gem 'selenium-webdriver', '~> 3.0', '>= 3.0.5'
+  gem 'factory_girl_rails', '~> 4.8'
+  gem 'rails-controller-testing', '~> 0.0.3'
 end
 
 group :production do
