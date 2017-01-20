@@ -25,7 +25,7 @@
 </div>
 
 <div class="btn-group">
-	<%= link_to 'Podgląd', @link.url, class: "btn btn-primary", target: "_blank" %>
+	<%= link_to '', @link.url, class: "btn btn-primary glyphicon glyphicon-zoom-in", target: "_blank" %>
 </div>
 
 <% if user_signed_in? %>
@@ -43,17 +43,9 @@
 
 <% if @crud %>
 	<div class="btn-group">
-		<%= link_to 'Edytuj', edit_link_path(@link), class: "btn btn-default" %>
-		<%= link_to 'Usuń', @link, method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-default" %>
+		<%= link_to '', edit_link_path(@link), class: "btn btn-default glyphicon glyphicon-edit" %>
+		<%= link_to '', @link, method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-default glyphicon glyphicon-trash" %>
 	</div>
-<% end %>
-
-<%= form_tag(@link, :method => "get") do %>
-  <% if @sd %>
-    <button type="submit" class="btn-link" name="sortDate" value="asc">Sortuj wg daty (rosnąco)</button></br>
-  <% else %>
-    <button type="submit" class="btn-link" name="sortDate" value="desc">Sortuj wg daty (malejąco)</button></br>
-  <% end %>
 <% end %>
 
 <h3 class="comments_title">
@@ -75,6 +67,13 @@
   <% end %>  
 <% end %>
 <br>
+<%= form_tag(@link, :method => "get") do %>
+  <% if @sd %>
+    <button type="submit" class="btn btn-default btn-sort glyphicon glyphicon-arrow-down" name="sortDate" value="asc">Data</button></br>
+  <% else %>
+    <button type="submit" class="btn btn-default btn-sort glyphicon glyphicon-arrow-up" name="sortDate" value="desc">Data</button></br>
+  <% end %>
+<% end %>
 <div id="comments">
   <%= render :partial => @comments %>
 </div>
