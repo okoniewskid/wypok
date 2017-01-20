@@ -1,18 +1,24 @@
+<%= stylesheet_link_tag "/assets/link.css" %>
+<%= stylesheet_link_tag "/assets/avatar.css" %>
 <h1>Hasztagi</h1>
 <ul>
 <%= form_tag(@link, :method => "get") do %>
-  <% if @sn %>
-    <button type="submit" class="btn-link" name="sortName" value="asc">Sortuj wg nazwy (rosnąco)</button></br>
-  <% else %>
-    <button type="submit" class="btn-link" name="sortName" value="desc">Sortuj wg nazwy (malejąco)</button></br>
-  <% end %>
-  <% if @sc %>
-    <button type="submit" class="btn-link" name="sortCount" value="asc">Sortuj wg ilości (rosnąco)</button></br>
-  <% else %>
-    <button type="submit" class="btn-link" name="sortCount" value="desc">Sortuj wg ilości (malejąco)</button></br>
-  <% end %>
+  <div class="sort">
+    <% if @sn %>
+      <button type="submit" class="btn btn-default btn-sort glyphicon glyphicon-arrow-down" name="sortName" value="asc">Nazwa</button></br>
+    <% else %>
+      <button type="submit" class="btn btn-default btn-sort glyphicon glyphicon-arrow-up" name="sortName" value="desc">Nazwa</button></br>
+    <% end %>
+    <% if @sc %>
+      <button type="submit" class="btn btn-default btn-sort glyphicon glyphicon-arrow-down" name="sortCount" value="asc">Ilość</button></br>
+    <% else %>
+      <button type="submit" class="btn btn-default btn-sort glyphicon glyphicon-arrow-up" name="sortCount" value="desc">Ilość</button></br>
+    <% end %>
+  </div>
 <% end %>
+<div class="ul-wrap">
 <% @hashtags.each do |hashtag| %>
-  <li><%= link_to hashtag.name, hashtag_path(hashtag.name) %></li>
+    <li><%= link_to hashtag.name, hashtag_path(hashtag.name) %></li>
 <% end -%>
+</div>
 </ul>
