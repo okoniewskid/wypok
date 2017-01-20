@@ -2,11 +2,28 @@
 	padding: 2em 1em;
 	border-bottom: 1px solid #e9e9e9;
 	.title {
-		a {
-			color: #FF4500;
-		}
+		// a {
+		// 	color: #FF4500;
+		// }
 	}
 }
+
+a:link {
+	color: #000000;
+}
+
+a:visited {
+	color: #000000;
+}
+
+a:hover {
+	background: transparent;
+}
+
+a:active {
+	color: green;
+}
+
 .comments_title {
 	margin-top: 2em;
 }
