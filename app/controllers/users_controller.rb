@@ -123,6 +123,15 @@ include HashtagsHelper
       else
         @emailRole = false
       end
+      if current_user
+        u = User.find(current_user.id)
+        if u.has_role? :admin
+          @allow = true
+        else
+          @allow = false
+          flash[:success] = "Brak uprawnień!"
+        end
+      end
     end
     
     def update
