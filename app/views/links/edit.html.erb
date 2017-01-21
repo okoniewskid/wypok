@@ -1,6 +1,7 @@
-<h1>Zmień</h1>
-
-<%= render 'form', link: @link %>
+<% if @allow %>
+    <h1>Zmień</h1>
+    <%= render 'form', link: @link %>
+<% end %>
 
 <%= link_to 'Pokaż', @link %> |
 <%= link_to 'Wróć', links_path %>
