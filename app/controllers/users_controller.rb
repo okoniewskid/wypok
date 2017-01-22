@@ -3,6 +3,23 @@ include HashtagsHelper
 
     def index
       @users = User.paginate(:page => params[:page], :per_page => 15)
+      case
+        when params[:view] 
+          case params[:view] 
+            when "admin"
+              pm = Role.find_by name: 'admin'
+              if pm != nil
+                @va = true
+                @users = @users.joins('LEFT JOIN users_roles ON
+                      users_roles.user_id = users.id')
+                      .where('users_roles.role_id = '+ pm.id.to_s)
+              else
+                @va = false
+              end
+            else
+              @va = false;
+          end
+      end
       case 
         when params[:search]
           @users = @users.search(params[:search])

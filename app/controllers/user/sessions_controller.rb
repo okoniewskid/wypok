@@ -6,7 +6,7 @@ class User::SessionsController < Devise::SessionsController
     if resource.is_a?(User)
       if resource.has_role? :block
         sign_out resource
-        flash[:notice] = "Twoje konto zostało zablokowane. Prosimy o kontakt  z administracją."
+        flash[:notice] = "Twoje konto zostało zablokowane."
         new_user_session_path
       else
        super

@@ -13,6 +13,13 @@
     </li>
   </ul>
   </br></br>
+  <% if @va %>
+    <input name="view" type="checkbox" checked value="admin", onClick="this.form.submit();" />
+  <% else %>
+    <input name="view" type="checkbox" value="admin", onClick="this.form.submit();" />
+  <% end %>
+  Pokaż administratorów
+  </br></br>
   <% if @sn %>
     <button type="submit" class="btn-link" name="sortName" value="asc">Sortuj wg nazwy (rosnąco)</button></br>
   <% else %>
