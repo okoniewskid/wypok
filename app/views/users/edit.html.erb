@@ -1,106 +1,108 @@
 <%= stylesheet_link_tag "/assets/avatar.css" %>
 <%= stylesheet_link_tag "/assets/link.css" %>
 
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2>Nie zapisano z powodu <%= pluralize(@user.errors.count, @jakiBlad) %>:</h2>
-
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-<% end %>
-
-<h2>Zmień dane użytkownika</h2>
-  <div class="panel panel-default">
-    <div class="panel-body">
-      <div class="form-inputs">
-        <h3>Ustawienia</h3> 
-        <%= form_for(@user) do |f| %>
-          <div class="form-group">
-            <% if @adminRole %>
-              <input name="admin" type="checkbox" checked value="true" />
-            <% else %>
-              <input name="admin" type="checkbox" value="true" />
-            <% end %>
-             Administrator
-             </br>
-            <% if @blockRole %>
-              <input name="block" type="checkbox" checked value="true" />
-            <% else %>
-              <input name="block" type="checkbox" value="true" />
-            <% end %>
-             Zablokuj
-          </div>
-          <div class="form-group">
-            <%= f.label "Login" %>
-            <%= f.text_field :name, class: "form-control", :autofocus => true, required: true %>
-          </div>
-          <div class="form-group">
-            <%= f.label :email %>
-            <%= f.email_field :email, class: "form-control", required: true %>
-          </div>
-          <div class="form-group">
-            <% if @emailRole %>
-              <input name="hiddenEmail" type="checkbox" value="true" />
-            <% else %>
-              <input name="hiddenEmail" type="checkbox" checked value="true" />
-            <% end %>
-             Ukryty email
-          </div>
-          <div class="form-group">
-    	  	  <%= f.label "Awatar" %>
-    	  	  <br>
-    	  	  <%= image_tag @user.avatar.url, class: "avatar-user" %>
-      			<%= f.file_field :avatar, as: :file %>
-      		</div>
-          <div class="form-group">
-            <%= f.submit "Zmień", class: "btn btn-primary" %>
-          </div>
+<% if @allow %>
+  <%= form_for(@user) do |f| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2>Nie zapisano z powodu <%= pluralize(@user.errors.count, @jakiBlad) %>:</h2>
+  
+        <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
+        </ul>
       </div>
-      <hr>
-      <div class="form-inputs">
-        <h3>Zmiana hasła</h3> 
-        <%= form_for(@user) do |f| %>
-          <div class="form-group">
-            <%= f.label "Nowe hasło"%>
-            <%= f.password_field :password, class: "form-control", :autocomplete => "off", required: true %>
-          </div>
-      	  <div class="form-group">
-      	  	<%= f.label "Potwierdzenie hasła" %>
-      	  	<%= f.password_field :password_confirmation, class: "form-control", :autocomplete => "off", required: true %>
-      	  </div>
-          <div class="form-group">
-            <%= f.submit "Zmień", class: "btn btn-primary" %>
-          </div>
-        <% end %>
+    <% end %>
+  <% end %>
+  
+  <h2>Zmień dane użytkownika</h2>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="form-inputs">
+          <h3>Ustawienia</h3> 
+          <%= form_for(@user) do |f| %>
+            <div class="form-group">
+              <% if @adminRole %>
+                <input name="admin" type="checkbox" checked value="true" />
+              <% else %>
+                <input name="admin" type="checkbox" value="true" />
+              <% end %>
+               Administrator
+               </br>
+              <% if @blockRole %>
+                <input name="block" type="checkbox" checked value="true" />
+              <% else %>
+                <input name="block" type="checkbox" value="true" />
+              <% end %>
+               Zablokowany
+            </div>
+            <div class="form-group">
+              <%= f.label "Login" %>
+              <%= f.text_field :name, class: "form-control", :autofocus => true, required: true %>
+            </div>
+            <div class="form-group">
+              <%= f.label :email %>
+              <%= f.email_field :email, class: "form-control", required: true %>
+            </div>
+            <div class="form-group">
+              <% if @emailRole %>
+                <input name="hiddenEmail" type="checkbox" value="true" />
+              <% else %>
+                <input name="hiddenEmail" type="checkbox" checked value="true" />
+              <% end %>
+               Ukryty email
+            </div>
+            <div class="form-group">
+      	  	  <%= f.label "Awatar" %>
+      	  	  <br>
+      	  	  <%= image_tag @user.avatar.url, class: "avatar-user" %>
+        			<%= f.file_field :avatar, as: :file %>
+        		</div>
+            <div class="form-group">
+              <%= f.submit "Zmień", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
         <hr>
-        <div class="form-group">
-          <h3>Informacje</h3> 
-          <b> Zarejestrowany: </b>
-          <%= @user.created_at %>
-          </br>
-          <b> Liczba logowań: </b>
-          <%= @user.sign_in_count %>
-          </br>
-          <b> Ostatnio zmieniono dane: </b>
-          <%= @user.updated_at %>
-          </br>
-          <b> Ostatnio zalogowany: </b>
-          <%= @user.current_sign_in_at %>
-          <b> z IP: </b>
-          <%= @user.current_sign_in_ip %>
-          </br>
+        <div class="form-inputs">
+          <h3>Zmiana hasła</h3> 
+          <%= form_for(@user) do |f| %>
+            <div class="form-group">
+              <%= f.label "Nowe hasło"%>
+              <%= f.password_field :password, class: "form-control", :autocomplete => "off", required: true %>
+            </div>
+        	  <div class="form-group">
+        	  	<%= f.label "Potwierdzenie hasła" %>
+        	  	<%= f.password_field :password_confirmation, class: "form-control", :autocomplete => "off", required: true %>
+        	  </div>
+            <div class="form-group">
+              <%= f.submit "Zmień", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+          <hr>
+          <div class="form-group">
+            <h3>Informacje</h3> 
+            <b> Zarejestrowany: </b>
+            <%= @user.created_at %>
+            </br>
+            <b> Liczba logowań: </b>
+            <%= @user.sign_in_count %>
+            </br>
+            <b> Ostatnio zmieniono dane: </b>
+            <%= @user.updated_at %>
+            </br>
+            <b> Ostatnio zalogowany: </b>
+            <%= @user.current_sign_in_at %>
+            <b> z IP: </b>
+            <%= @user.current_sign_in_ip %>
+            </br>
+          </div>
         </div>
       </div>
+      <div class="panel-footer">
+        <h3>Usuń konto</h3>
+        <p><%= button_to "Usuń", @user, data: { confirm: "Na pewno?" }, method: :delete, class: "btn btn-danger" %></p>
+      </div>
     </div>
-    <div class="panel-footer">
-      <h3>Usuń konto</h3>
-      <p><%= button_to "Usuń", @user, data: { confirm: "Na pewno?" }, method: :delete, class: "btn btn-danger" %></p>
-    </div>
-  </div>
+<% end %>

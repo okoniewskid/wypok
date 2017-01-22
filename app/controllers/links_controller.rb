@@ -118,6 +118,17 @@ class LinksController < ApplicationController
     @link.description = returnHashtags(@link.description)
     @link.description = returnBIUS(@link.description)
     @link.description = returnEnter(@link.description)
+    if current_user
+      u = User.find(current_user.id)
+      if u.has_role? :admin
+        @allow = true
+      elsif @link.user === u
+        @allow = true
+      else
+        @allow = false
+        flash[:notice] = "Brak uprawnień!"
+      end
+    end
   end
 
   # POST /links

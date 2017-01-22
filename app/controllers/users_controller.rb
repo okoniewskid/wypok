@@ -2,7 +2,24 @@ class UsersController < ApplicationController
 include HashtagsHelper
 
     def index
-      @users = User.paginate(:page => params[:page], :per_page => 10)
+      @users = User.paginate(:page => params[:page], :per_page => 15)
+      case
+        when params[:view] 
+          case params[:view] 
+            when "admin"
+              pm = Role.find_by name: 'admin'
+              if pm != nil
+                @va = true
+                @users = @users.joins('LEFT JOIN users_roles ON
+                      users_roles.user_id = users.id')
+                      .where('users_roles.role_id = '+ pm.id.to_s)
+              else
+                @va = false
+              end
+            else
+              @va = false;
+          end
+      end
       case 
         when params[:search]
           @users = @users.search(params[:search])
@@ -22,6 +39,15 @@ include HashtagsHelper
         else
           @users = @users.all.order('name ASC')
       end
+      if current_user
+        if User.find(current_user.id).has_role? :admin
+          @iAdminRole = true;
+        else
+          @iAdminRole = false;
+        end
+      else
+        @iAdminRole = false;
+      end
     end
     
     def show
@@ -36,12 +62,22 @@ include HashtagsHelper
       else
         @emailRole = false
       end
-      if User.find(current_user.id).has_role? :admin
-        @iAdminRole = true;
+      if current_user
+        if User.find(current_user.id).has_role? :admin
+          @iAdminRole = true;
+        else
+          @iAdminRole = false;
+        end
+        if(@user.id === current_user.id)
+          iIsThisUser = true
+        else
+          iIsThisUser = false
+        end
       else
         @iAdminRole = false;
+        iIsThisUser = false;
       end
-      if @emailRole || @iAdminRole || @user.id === current_user.id
+      if @emailRole || @iAdminRole || iIsThisUser
         @viewEmail = true
       else
         @viewEmail = false
@@ -123,6 +159,18 @@ include HashtagsHelper
       else
         @emailRole = false
       end
+      if current_user
+        u = User.find(current_user.id)
+        if u.has_role? :admin
+          @allow = true
+        else
+          @allow = false
+          flash[:notice] = "Brak uprawnień!"
+        end
+      else
+        @allow = false
+        flash[:notice] = "Brak uprawnień!"
+      end
     end
     
     def update
@@ -155,7 +203,7 @@ include HashtagsHelper
             @user.add_role(:email)
           end
         end
-        redirect_to edit_user_path(@user), :notice => "Dane zostały zmienione"
+        redirect_to edit_user_path(@user), :notice => "Dane zostały zmienione."
       else
 			  case @user.errors.count
 			    when 1
@@ -176,6 +224,6 @@ include HashtagsHelper
       end
       destroy_hashtaggables(@links.pluck('id'), 'Link')
       @user.destroy
-      redirect_to users_path, :notice => "Konto zostało usunięte"
+      redirect_to users_path, :notice => "Konto zostało usunięte."
     end
 end

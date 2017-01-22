@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get "hashtags/:hashtag",   to: "hashtags#show",      as: :hashtag
   get "hashtags",            to: "hashtags#index",     as: :hashtags
   
-  devise_for :users, :controllers => { :registrations => "user/registrations" } 
+  devise_for :users, :controllers => { :registrations => "user/registrations", :sessions => "user/sessions" } 
     resources :links do
     member do
       put "like", to:    "links#upvote"
