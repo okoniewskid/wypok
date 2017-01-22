@@ -148,11 +148,11 @@ include HashtagsHelper
           @allow = true
         else
           @allow = false
-          flash[:success] = "Brak uprawnień!"
+          flash[:notice] = "Brak uprawnień!"
         end
       else
         @allow = false
-        flash[:success] = "Brak uprawnień!"
+        flash[:notice] = "Brak uprawnień!"
       end
     end
     
@@ -186,7 +186,7 @@ include HashtagsHelper
             @user.add_role(:email)
           end
         end
-        redirect_to edit_user_path(@user), :notice => "Dane zostały zmienione"
+        redirect_to edit_user_path(@user), :notice => "Dane zostały zmienione."
       else
 			  case @user.errors.count
 			    when 1
@@ -207,6 +207,6 @@ include HashtagsHelper
       end
       destroy_hashtaggables(@links.pluck('id'), 'Link')
       @user.destroy
-      redirect_to users_path, :notice => "Konto zostało usunięte"
+      redirect_to users_path, :notice => "Konto zostało usunięte."
     end
 end

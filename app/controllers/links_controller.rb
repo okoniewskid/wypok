@@ -126,7 +126,7 @@ class LinksController < ApplicationController
         @allow = true
       else
         @allow = false
-        flash[:success] = "Brak uprawnień!"
+        flash[:notice] = "Brak uprawnień!"
       end
     end
   end
