@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 include HashtagsHelper
 
     def index
-      @users = User.paginate(:page => params[:page], :per_page => 10)
+      @users = User.paginate(:page => params[:page], :per_page => 15)
       case 
         when params[:search]
           @users = @users.search(params[:search])
@@ -22,6 +22,15 @@ include HashtagsHelper
         else
           @users = @users.all.order('name ASC')
       end
+      if current_user
+        if User.find(current_user.id).has_role? :admin
+          @iAdminRole = true;
+        else
+          @iAdminRole = false;
+        end
+      else
+        @iAdminRole = false;
+      end
     end
     
     def show
@@ -36,12 +45,22 @@ include HashtagsHelper
       else
         @emailRole = false
       end
-      if User.find(current_user.id).has_role? :admin
-        @iAdminRole = true;
+      if current_user
+        if User.find(current_user.id).has_role? :admin
+          @iAdminRole = true;
+        else
+          @iAdminRole = false;
+        end
+        if(@user.id === current_user.id)
+          iIsThisUser = true
+        else
+          iIsThisUser = false
+        end
       else
         @iAdminRole = false;
+        iIsThisUser = false;
       end
-      if @emailRole || @iAdminRole || @user.id === current_user.id
+      if @emailRole || @iAdminRole || iIsThisUser
         @viewEmail = true
       else
         @viewEmail = false
@@ -131,6 +150,9 @@ include HashtagsHelper
           @allow = false
           flash[:success] = "Brak uprawnień!"
         end
+      else
+        @allow = false
+        flash[:success] = "Brak uprawnień!"
       end
     end
     
