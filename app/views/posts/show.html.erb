@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <div id="post_content">
   <h1 class="title">
     <%= @post.title %>
@@ -20,5 +18,4 @@
     <%= render "post_comments/form" %>
   </div>
 </div>
-<%= link_to 'Edytuj', edit_post_path(@post) %> |
 <%= link_to 'Wróć', posts_path %>

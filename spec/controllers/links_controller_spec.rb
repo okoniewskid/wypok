@@ -10,7 +10,9 @@ RSpec.describe LinksController, type: :controller do
     FactoryGirl.attributes_for(:link, url: nil)
   }
   
-  let(:valid_session) { login_user }
+  let(:valid_session) { 
+    @user = create(:user)
+    sign_in @user }
 
   describe "GET #index" do
     it "assigns all links as @links" do
@@ -72,47 +74,6 @@ RSpec.describe LinksController, type: :controller do
       it "re-renders the 'new' template" do
         post :create, params: {link: invalid_attributes}, session: valid_session
         expect(response).to render_template("new")
-      end
-    end
-  end
-
-  describe "PUT #update" do
-    context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested link" do
-        link = Link.create! valid_attributes
-        put :update, params: {id: link.to_param, link: new_attributes}, session: valid_session
-        link.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "assigns the requested link as @link" do
-        link = Link.create! valid_attributes
-        put :update, params: {id: link.to_param, link: valid_attributes}, session: valid_session
-        expect(assigns(:link)).to eq(link)
-      end
-
-      it "redirects to the link" do
-        link = Link.create! valid_attributes
-        put :update, params: {id: link.to_param, link: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(link)
-      end
-    end
-
-    context "with invalid params" do
-      it "assigns the link as @link" do
-        link = Link.create! valid_attributes
-        put :update, params: {id: link.to_param, link: invalid_attributes}, session: valid_session
-        expect(assigns(:link)).to eq(link)
-      end
-
-      it "re-renders the 'edit' template" do
-        link = Link.create! valid_attributes
-        put :update, params: {id: link.to_param, link: invalid_attributes}, session: valid_session
-        expect(response).to render_template("edit")
       end
     end
   end
