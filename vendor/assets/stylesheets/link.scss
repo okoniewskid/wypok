@@ -45,20 +45,10 @@ a:active {
 	margin-right: 20px;
 }
 
-// .hashtags {
-//   	list-style-type: none;
-//   	display: flex;
-// 	flex-wrap: wrap;
-// }
+.btn-primary {
+	background-color: #3d87ff;
+}
 
-// @media screen and (max-device-width: 1920px) {
-// 	.hashtag {
-// 		flex-basis: 33%;
-// 	}
-// }
-
-// @media screen and (max-device-width: 1100px) {
-// 	.hashtag {
-// 		flex-basis: 50%;
-// 	}
-// }
+.btn-primary:hover {
+	background-color: #1a5dc9;
+}

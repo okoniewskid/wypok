@@ -43,7 +43,7 @@
       </h2>
     
       <div class="btn-group">
-        <a class="btn btn-default btn-sm glyphicon glyphicon-eye-open eye" href="<%= link.url %>", target="_blank"></a>
+        <a class="btn btn-default btn-sm glyphicon glyphicon-eye-open eye" href="<%= link.url %>", target="_blank", title="Zobacz link"></a>
         <% if user_signed_in? %>
           <%= link_to like_link_path(link), method: :put, class: "btn btn-default btn-sm" do %>
             <span class="glyphicon glyphicon-chevron-up"></span>

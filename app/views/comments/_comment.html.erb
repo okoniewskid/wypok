@@ -25,9 +25,9 @@
                 <% if current_user %>
                   <% u = User.find(current_user.id) %>
                   <% if u.has_role? :admin %>
-                    <%= link_to '',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default glyphicon glyphicon-trash" %>
+                    <%= link_to '',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default glyphicon glyphicon-trash", title: "Usuń" %>
                   <% elsif comment.user === u %>
-                    <%= link_to '',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default glyphicon glyphicon-trash" %>
+                    <%= link_to '',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default glyphicon glyphicon-trash", title: "Usuń" %>
                   <% end %>
                 <% end %>
               </div>
@@ -60,9 +60,9 @@
                 <% if current_user %>
                   <% u = User.find(current_user.id) %>
                   <% if u.has_role? :admin %>
-                    <%= link_to '',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default glyphicon glyphicon-trash" %>
+                    <%= link_to '',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default glyphicon glyphicon-trash", title: "Usuń" %>
                   <% elsif comment.user === u %>
-                    <%= link_to '',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default glyphicon glyphicon-trash" %>
+                    <%= link_to '',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default glyphicon glyphicon-trash", title: "Usuń" %>
                   <% end %>
                 <% end %>
               </div>
