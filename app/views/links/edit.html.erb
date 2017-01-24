@@ -1,7 +1,8 @@
+<%= link_to '', links_path, class: "btn btn-default fa fa-reply", title: "Powrót" %>
+
 <% if @allow %>
     <h1>Zmień</h1>
     <%= render 'form', link: @link %>
 <% end %>
 
-<%= link_to 'Pokaż', @link %> |
-<%= link_to 'Wróć', links_path %>
+

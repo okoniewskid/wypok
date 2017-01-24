@@ -2,6 +2,8 @@
 <%= stylesheet_link_tag "/assets/pagination.css" %>
 <%= stylesheet_link_tag "/assets/hashtag.css" %>
 
+<%= link_to '', links_path, class: "btn btn-default fa fa-reply", title: "Powrót" %>
+
 <h1><%= params[:hashtag] %></h1>
 
 <%= form_tag(hashtag_path(params[:hashtag]), :method => "get") do %>

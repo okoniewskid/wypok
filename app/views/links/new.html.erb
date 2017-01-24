@@ -1,4 +1,7 @@
 <%= stylesheet_link_tag "/assets/link.css" %>
+
+<%= link_to '', links_path, class: "btn btn-default fa fa-reply", title: "Powrót" %>
+
 <h1>Dodaj Link</h1>
 
 <%= render 'form', link: @link %>
