@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag "/assets/avatar.css" %>
 <%= stylesheet_link_tag "/assets/link.css" %>
 
-<%= link_to '', links_path, class: "btn btn-default fa fa-reply", title: "Powrót" %>
+<%= link_to '', users_path, class: "btn btn-default fa fa-reply", title: "Powrót do listy użytkowników" %>
 
 <% if @allow %>
   <%= form_for(@user) do |f| %>
