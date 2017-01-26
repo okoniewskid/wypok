@@ -60,9 +60,9 @@
                 <% if current_user %>
                   <% u = User.find(current_user.id) %>
                   <% if u.has_role? :admin %>
-                    <%= link_to '',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default glyphicon glyphicon-trash", title: "Usuń" %>
+                    <%= link_to '',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default glyphicon btn-circle btn-xs glyphicon-remove", title: "Usuń" %>
                   <% elsif comment.user === u %>
-                    <%= link_to '',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default glyphicon glyphicon-trash", title: "Usuń" %>
+                    <%= link_to '',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default glyphicon btn-circle btn-xs glyphicon-remove", title: "Usuń" %>
                   <% end %>
                 <% end %>
               </div>
