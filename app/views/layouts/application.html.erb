@@ -13,11 +13,11 @@
     <div class="navbar-inner">
       <div class="container" >
         <div id="logo" class="navbar-brand"><%= link_to(image_tag("wypok.png", height: '32', width: '148'), root_path) %></div>
-        <div id="posty" class="navbar-brand"><%= link_to 'Posty', posts_path %></div>
         <nav class="navbar-collapse pull-right"> <!-- collapse  -->
         	<% if user_signed_in? %>
 						<ul class="nav nav-pills">
 							<li><div><%= link_to '', new_link_path, class: "btn btn-default btn-nav btn-outline btn-circle glyphicon glyphicon-plus", title: "Dodaj link" %></div></li>
+							<li><div><%= link_to '', posts_path, class: "btn btn-default btn-nav btn-outline btn-circle glyphicon glyphicon-comment", title: "Posty" %></div></li>
               <li><div><%= link_to '', hashtags_path, class: "btn btn-default btn-nav btn-outline btn-circle glyphicon glyphicon-tags", title: "Hasztagi" %></div></li>
               <li><div><%= link_to '', users_path, class: "btn btn-default btn-nav btn-outline btn-circle glyphicon glyphicon-search", title: "Znajdź użytkownika" %></div></li>
 							<li><div><%= link_to '', current_user, class: "btn btn-default btn-nav btn-outline btn-circle glyphicon glyphicon glyphicon-th-list", title: "Mój profil" %></div></li>
