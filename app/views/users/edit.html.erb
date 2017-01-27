@@ -1,9 +1,11 @@
 <%= stylesheet_link_tag "/assets/avatar.css" %>
 <%= stylesheet_link_tag "/assets/link.css" %>
+<%= stylesheet_link_tag "/assets/hidden.css" %>
 
 <%= link_to '', users_path, class: "btn btn-default btn-outline fa fa-reply", title: "Powrót do listy użytkowników" %>
 
 <% if @allow %>
+  <h2>Zmień dane użytkownika</h2>
   <%= form_for(@user) do |f| %>
     <% if @user.errors.any? %>
       <div id="error_explanation">
@@ -17,8 +19,6 @@
       </div>
     <% end %>
   <% end %>
-  
-  <h2>Zmień dane użytkownika</h2>
     <div class="panel panel-default">
       <div class="panel-body">
         <div class="form-inputs">
@@ -44,7 +44,7 @@
               <%= f.text_field :name, class: "form-control", :autofocus => true, required: true %>
             </div>
             <div class="form-group">
-              <%= f.label :email %>
+              <%= f.label "Email" %>
               <%= f.email_field :email, class: "form-control", required: true %>
             </div>
             <div class="form-group">
@@ -70,6 +70,23 @@
         <div class="form-inputs">
           <h3>Zmiana hasła</h3> 
           <%= form_for(@user) do |f| %>
+            <div class="hidden">
+              <% if @adminRole %>
+                <input name="admin" type="checkbox" checked value="true" />
+              <% else %>
+                <input name="admin" type="checkbox" value="true" />
+              <% end %>
+              <% if @blockRole %>
+                <input name="block" type="checkbox" checked value="true" />
+              <% else %>
+                <input name="block" type="checkbox" value="true" />
+              <% end %>
+              <% if @emailRole %>
+                <input name="hiddenEmail" type="checkbox" value="true" />
+              <% else %>
+                <input name="hiddenEmail" type="checkbox" checked value="true" />
+              <% end %>
+            </div>
             <div class="form-group">
               <%= f.label "Nowe hasło"%>
               <%= f.password_field :password, class: "form-control", :autocomplete => "off", required: true %>
