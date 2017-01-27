@@ -26,6 +26,7 @@
 						</ul>
 					<% else %>
 						<ul class="nav nav-pills">
+							<li><div><%= link_to '', posts_path, class: "btn btn-default btn-nav btn-outline btn-circle glyphicon glyphicon-list", title: "Posty" %></div></li>
 							<li><div><%= link_to '', hashtags_path, class: "btn btn-default btn-nav btn-outline btn-circle glyphicon glyphicon-tags", title: "Hasztagi" %></div></li>
               <li><div><%= link_to '', users_path, class: "btn btn-default btn-nav btn-outline btn-circle glyphicon glyphicon-search", title: "Znajdź użytkownika" %></div></li>
 							<li><div><%= link_to '', new_user_registration_path, class: "btn btn-default btn-nav btn-outline btn-circle glyphicon glyphicon-user", title: "Zarejestruj" %></div></li>

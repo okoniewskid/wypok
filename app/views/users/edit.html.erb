@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag "/assets/avatar.css" %>
 <%= stylesheet_link_tag "/assets/link.css" %>
 
-<%= link_to '', users_path, class: "btn btn-default fa fa-reply", title: "Powrót do listy użytkowników" %>
+<%= link_to '', users_path, class: "btn btn-default btn-outline fa fa-reply", title: "Powrót do listy użytkowników" %>
 
 <% if @allow %>
   <%= form_for(@user) do |f| %>
@@ -85,19 +85,21 @@
           <hr>
           <div class="form-group">
             <h3>Informacje</h3> 
-            <b> Zarejestrowany: </b>
-            <%= @user.created_at %>
-            </br>
-            <b> Liczba logowań: </b>
-            <%= @user.sign_in_count %>
-            </br>
-            <b> Ostatnio zmieniono dane: </b>
-            <%= @user.updated_at %>
-            </br>
-            <b> Ostatnio zalogowany: </b>
-            <%= @user.current_sign_in_at %>
-            <b> z IP: </b>
-            <%= @user.current_sign_in_ip %>
+            <font size="1">
+              <b> Zarejestrowany: </b>
+              <%= @user.created_at %>
+              </br>
+              <b> Liczba logowań: </b>
+              <%= @user.sign_in_count %>
+              </br>
+              <b> Ostatnio zmieniono dane: </b>
+              <%= @user.updated_at %>
+              </br>
+              <b> Ostatnio zalogowany: </b>
+              <%= @user.current_sign_in_at %>
+              <b> z IP: </b>
+              <%= @user.current_sign_in_ip %>
+            </font>
             </br>
           </div>
         </div>
