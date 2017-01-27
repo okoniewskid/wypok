@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 include HashtagsHelper
 
     def index
-      @users = User.paginate(:page => params[:page], :per_page => 15)
+      @users = User.paginate(:page => params[:page], :per_page => 30)
       case
         when params[:view] 
           case params[:view] 
@@ -175,6 +175,33 @@ include HashtagsHelper
     
     def update
       @user = User.find(params[:id])
+      if @user.has_role? :admin
+        @adminRole = true
+      else
+        @adminRole = false
+      end
+      if @user.has_role? :block
+        @blockRole = true
+      else
+        @blockRole = false
+      end
+      if @user.has_role? :email
+        @emailRole = true
+      else
+        @emailRole = false
+      end
+      if current_user
+        u = User.find(current_user.id)
+        if u.has_role? :admin
+          @allow = true
+        else
+          @allow = false
+          flash[:notice] = "Brak uprawnień!"
+        end
+      else
+        @allow = false
+        flash[:notice] = "Brak uprawnień!"
+      end
       if @user.update_attributes(params.require(:user).permit(:name, :email, :avatar, :password, :password_confirmation))
         if params[:admin]
           if !(@user.has_role? :admin)

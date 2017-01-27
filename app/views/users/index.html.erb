@@ -30,5 +30,7 @@
 <% end %>
 </br>
 <%= will_paginate @users, :previous_label => 'Poprzedni', :next_label => 'Następny', renderer: BootstrapPagination::Rails %>
-<%= render :partial => @users %>
+<div class="ul-wrap">
+  <%= render :partial => @users %>
+</div>
 <%= will_paginate @users, :previous_label => 'Poprzedni', :next_label => 'Następny', renderer: BootstrapPagination::Rails %>
