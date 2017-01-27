@@ -8,20 +8,16 @@
 	}
 }
 
-a:link {
-	// color: #000000;
+a.btn-default {
+	color: black;
 }
 
-a:visited {
-	color: #000000;
+a.white-eye {
+	color: white;
 }
 
 a:hover {
 	background: transparent;
-}
-
-a:active {
-	color: green;
 }
 
 .comments_title {
@@ -43,12 +39,4 @@ a:active {
 
 .btn-sort {
 	margin-right: 20px;
-}
-
-.btn-primary {
-	background-color: #3d87ff;
-}
-
-.btn-primary:hover {
-	background-color: #1a5dc9;
 }

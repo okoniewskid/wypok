@@ -16,6 +16,7 @@
         <nav class="navbar-collapse pull-right"> <!-- collapse  -->
         	<% if user_signed_in? %>
 						<ul class="nav nav-pills">
+							<!--<li><div><button type="button" class: "btn btn-default btn-nav btn-outline btn-circle glyphicon glyphicon-plus"></button></div></li>-->
 							<li><div><%= link_to '', new_link_path, class: "btn btn-default btn-nav btn-outline btn-circle glyphicon glyphicon-plus", title: "Dodaj link" %></div></li>
 							<li><div><%= link_to '', posts_path, class: "btn btn-default btn-nav btn-outline btn-circle glyphicon glyphicon-list", title: "Posty" %></div></li>
               <li><div><%= link_to '', hashtags_path, class: "btn btn-default btn-nav btn-outline btn-circle glyphicon glyphicon-tags", title: "Hasztagi" %></div></li>

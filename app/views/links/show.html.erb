@@ -3,7 +3,7 @@
 <%= stylesheet_link_tag "/assets/pagination.css" %>
 <%= stylesheet_link_tag "/assets/link.css" %>
 
-<%= link_to '', links_path, class: "btn btn-default btn-outline fa fa-reply", title: "Powrót do strony głównej" %>
+<%= link_to '', links_path, class: "btn btn-default fa fa-reply", title: "Powrót do strony głównej" %>
 
 <div class="page-header">
   <h1>
@@ -13,13 +13,13 @@
         <%= (@link.ci_lower_bound(@link.get_upvotes.size, @link.get_upvotes.size+@link.get_downvotes.size, 0.95)*0.1).round(2) %>/10
       </i>
     </font>
-    </br>
-    <font size="3">
+    <br>
+    <font size="5">
       <%= sanitize @link.description, tags: %w(b i u s a br) %>
     </font>
     <br>
     <a href="<%= @link.url %>" target="_blank" title="<%= @link.title %>" ><img src="<%= @link.generate_image(@link) %>" class="miniaturka" ></a>
-    </br>
+    <br>
   <font size="4">
     <small>Przesłane <strong><%= time_ago_in_words(@link.created_at) %></strong> temu przez <%= link_to @link.user.name, @link.user %></small>
   </font>
@@ -27,17 +27,17 @@
 </div>
 
 <div class="btn-group">
-	<%= link_to '', @link.url, class: "btn btn-primary glyphicon glyphicon-eye-open eye", target: "_blank", title: "Zobacz link" %>
+	<%= link_to '', @link.url, class: "btn btn-primary glyphicon glyphicon-eye-open white-eye", target: "_blank", title: "Zobacz link" %>
 </div>
 
 <% if user_signed_in? %>
   <div class="btn-group pull-right">
-    <%= link_to like_link_path(@link), method: :put, class: "btn btn-default btn-sm btn-outline" do %>
-      <span class="glyphicon glyphicon-thumbs-up"></span>
+    <%= link_to like_link_path(@link), method: :put, class: "btn btn-default btn-sm" do %>
+      <span class="glyphicon glyphicon-chevron-up"></span>
       <%= @link.get_upvotes.size %>
     <% end %>
-    <%= link_to dislike_link_path(@link), method: :put, class: "btn btn-default btn-sm btn-outline" do %>
-      <span class="glyphicon glyphicon-thumbs-down"></span>
+    <%= link_to dislike_link_path(@link), method: :put, class: "btn btn-default btn-sm" do %>
+      <span class="glyphicon glyphicon-chevron-down"></span>
       <%= @link.get_downvotes.size %>
     <% end %>
   </div>
@@ -45,8 +45,8 @@
 
 <% if @crud %>
 	<div class="btn-group">
-		<%= link_to '', edit_link_path(@link), class: "btn btn-default btn-outline glyphicon glyphicon-edit", title: "Edytuj" %>
-		<%= link_to '', @link, method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-default btn-outline glyphicon glyphicon-trash", title: "Usuń" %>
+		<%= link_to '', edit_link_path(@link), class: "btn btn-default glyphicon glyphicon-edit", title: "Edytuj" %>
+		<%= link_to '', @link, method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-default glyphicon glyphicon-trash", title: "Usuń" %>
 	</div>
 <% end %>
 
@@ -58,11 +58,11 @@
   <%= simple_form_for [@link, Comment.new]  do |f| %>
     <div class="field">
       <%= f.text_area :body, id: "BIUSText",  class: "form-control", required: true %>
-      <a id="boldButtom" class="btn btn-default btn-outline" title="Pogrubienie"><span class="fa fa-bold"></span></a>
-      <a id="italicButtom" class="btn btn-default btn-outline" title="Kursywa"><span class="fa fa-italic"></span></a>
-      <a id="underlineButtom" class="btn btn-default btn-outline" title="Podkreślenie"><span class="fa fa-underline"></span></a>
-      <a id="strikethroughButtom" class="btn btn-default btn-outline" title="Przekreślenie"><span class="fa fa-strikethrough"></span></a>
-      <a class="btn btn-default btn-outline" href="/pages/emoticons.html" target="_blank" title="Dostępne emotikony"><span class="fa fa-smile-o"></span></a>
+      <a id="boldButtom" class="btn btn-default" title="Pogrubienie"><span class="fa fa-bold"></span></a>
+      <a id="italicButtom" class="btn btn-default" title="Kursywa"><span class="fa fa-italic"></span></a>
+      <a id="underlineButtom" class="btn btn-default" title="Podkreślenie"><span class="fa fa-underline"></span></a>
+      <a id="strikethroughButtom" class="btn btn-default" title="Przekreślenie"><span class="fa fa-strikethrough"></span></a>
+      <a class="btn btn-default" href="/pages/emoticons.html" target="_blank" title="Dostępne emotikony"><span class="fa fa-smile-o"></span></a>
     </div>
     <br>
     <%= f.submit "Dodaj komentarz", class: "btn btn-primary" %>
@@ -71,12 +71,11 @@
 <br>
 <%= form_tag(@link, :method => "get") do %>
   <% if @sd %>
-    <button type="submit" class="btn btn-default btn-sort btn-outline fa fa-arrow-down" name="sortDate" value="asc", title="Sortuj rosnąco wg daty"> Data</button></br>
+    <button type="submit" class="btn btn-default btn-sort glyphicon glyphicon-arrow-down" name="sortDate" value="asc", title="Sortuj rosnąco wg daty">Data</button></br>
   <% else %>
-    <button type="submit" class="btn btn-default btn-sort btn-outline fa fa-arrow-up" name="sortDate" value="desc", title="Sortuj malejąco wg daty"> Data</button></br>
+    <button type="submit" class="btn btn-default btn-sort glyphicon glyphicon-arrow-up" name="sortDate" value="desc", title="Sortuj malejąco wg daty">Data</button></br>
   <% end %>
 <% end %>
-</br>
 <div id="comments">
   <%= render :partial => @comments %>
 </div>
