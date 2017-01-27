@@ -1,15 +1,16 @@
-
-<%= div_for(user) do %>
-  <div class="comments_wrapper clearfix">
-    <div>
-      <%= link_to  image_tag(user.avatar.url, class: "avatar-com"), user %>
-      </br>
-      <div class="user-name"><strong><%= link_to user.name, user %></strong></div>
-      <div class="user-name"><span class="text-center"><%= mail_to user.email %></span></div>
-      <% if @iAdminRole %>
-        <div><%= link_to '', edit_user_path(user), class: "btn btn-default btn-outline fa fa-wrench", title: "Zmień" %></div>
-      <% end %>
-      </br>
+<li>
+  <%= div_for(user) do %>
+    <div class="comments_wrapper clearfix">
+      <div>
+        <%= link_to  image_tag(user.avatar.url, class: "avatar-com"), user %>
+        </br>
+        <div class="user-name"><strong><%= link_to user.name, user %></strong></div>
+        <div class="user-name"><span class="text-center"><%= mail_to user.email %></span></div>
+        <% if @iAdminRole %>
+          <div><%= link_to '', edit_user_path(user), class: "btn btn-default btn-outline fa fa-wrench", title: "Zmień" %></div>
+        <% end %>
+        </br>
+      </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</li>

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 include HashtagsHelper
 
     def index
-      @users = User.paginate(:page => params[:page], :per_page => 15)
+      @users = User.paginate(:page => params[:page], :per_page => 30)
       case
         when params[:view] 
           case params[:view] 
