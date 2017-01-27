@@ -3,35 +3,42 @@ require 'will_paginate/array'
 class HashtagsController < ApplicationController
 
   def index
-    case
-      when params[:sortName]
-        case params[:sortName]
-          when "asc"
-            @hashtags = SimpleHashtag::Hashtag.all.order('name ASC')
-            @sn = false;
-          when "desc"
-            @hashtags = SimpleHashtag::Hashtag.all.order('name DESC')
-            @sn = true;
-        end
-      when params[:sortCount]
-        case params[:sortCount]
-          when "asc"
-            @hashtags = SimpleHashtag::Hashtag.all
-            .joins('LEFT JOIN simple_hashtag_hashtaggings ON
-            simple_hashtag_hashtaggings.hashtag_id = simple_hashtag_hashtags.id')
-            .group('simple_hashtag_hashtaggings.hashtag_id').
-            order('COUNT(simple_hashtag_hashtags.id) ASC')
-            @sc = false;
-          when "desc"
-            @hashtags = SimpleHashtag::Hashtag.all
-            .joins('LEFT JOIN simple_hashtag_hashtaggings ON
-            simple_hashtag_hashtaggings.hashtag_id = simple_hashtag_hashtags.id')
-            .group('simple_hashtag_hashtaggings.hashtag_id').
-            order('COUNT(simple_hashtag_hashtags.id) DESC')
-            @sc = true;
+     @hashtags = SimpleHashtag::Hashtag.paginate(:page => params[:page], :per_page => 90)
+    case 
+      when params[:search]
+        @hashtags =  @hashtags.where("name LIKE ?", "%#{params[:search]}%")
+        case
+          when params[:sortName]
+            case params[:sortName]
+              when "asc"
+                @hashtags = @hashtags.all.order('name ASC')
+                @sn = false;
+              when "desc"
+                @hashtags = @hashtags.all.order('name DESC')
+                @sn = true;
+            end
+          when params[:sortCount]
+            case params[:sortCount]
+              when "asc"
+                @hashtags = @hashtags.all
+                .joins('LEFT JOIN simple_hashtag_hashtaggings ON
+                simple_hashtag_hashtaggings.hashtag_id = simple_hashtag_hashtags.id')
+                .group('simple_hashtag_hashtaggings.hashtag_id').
+                order('COUNT(simple_hashtag_hashtags.id) ASC')
+                @sc = false;
+              when "desc"
+                @hashtags = @hashtags.all
+                .joins('LEFT JOIN simple_hashtag_hashtaggings ON
+                simple_hashtag_hashtaggings.hashtag_id = simple_hashtag_hashtags.id')
+                .group('simple_hashtag_hashtaggings.hashtag_id').
+                order('COUNT(simple_hashtag_hashtags.id) DESC')
+                @sc = true;
+            end
+          else
+            @hashtags = @hashtags.all.order('name ASC')
         end
       else
-        @hashtags = SimpleHashtag::Hashtag.all.order('name ASC')
+        @hashtags = @hashtags.all.order('name ASC')
     end
   end
 

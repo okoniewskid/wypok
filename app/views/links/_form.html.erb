@@ -22,11 +22,11 @@
     <%= f.label "Opis" %><br>
     <div class="field">
       <%= f.text_area :description, class: "form-control", id:"BIUSText" %>
-      <a id="boldButtom" class="btn btn-default" title="Pogrubienie"><span class="fa fa-bold"></span></a>
-      <a id="italicButtom" class="btn btn-default" title="Kursywa"><span class="fa fa-italic"></span></a>
-      <a id="underlineButtom" class="btn btn-default" title="Podkreślenie"><span class="fa fa-underline"></span></a>
-      <a id="strikethroughButtom" class="btn btn-default" title="Przekreślenie"><span class="fa fa-strikethrough"></span></a>
-      <a class="btn btn-default" href="/pages/emoticons.html" target="_blank" title="Dostępne emotikony"><span class="fa fa-smile-o"></span></a>
+      <a id="boldButtom" class="btn btn-default btn-outline" title="Pogrubienie"><span class="fa fa-bold"></span></a>
+      <a id="italicButtom" class="btn btn-default btn-outline" title="Kursywa"><span class="fa fa-italic"></span></a>
+      <a id="underlineButtom" class="btn btn-default btn-outline" title="Podkreślenie"><span class="fa fa-underline"></span></a>
+      <a id="strikethroughButtom" class="btn btn-default btn-outline" title="Przekreślenie"><span class="fa fa-strikethrough"></span></a>
+      <a class="btn btn-default btn-outline" href="/pages/emoticons.html" target="_blank" title="Dostępne emotikony"><span class="fa fa-smile-o"></span></a>
     </div>
   </div>
   
@@ -41,7 +41,7 @@
   
   <br>
   <div class="form-group">
-    <%= f.submit "Wyślij", class: "btn btn-lg btn-primary" %>
+    <%= f.submit "Wyślij", class: "btn btn-primary" %>
   </div>
   
   <%= javascript_include_tag "/assets/bius.js" %>

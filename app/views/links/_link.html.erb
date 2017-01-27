@@ -27,14 +27,16 @@
       <h2>
         <%= link_to link.title, link %>
         <font size="2">
-          <%= (link.ci_lower_bound(link.get_upvotes.size, link.get_upvotes.size+link.get_downvotes.size, 0.95)*0.1).round(2) %>/10
+          <i>
+            <%= (link.ci_lower_bound(link.get_upvotes.size, link.get_upvotes.size+link.get_downvotes.size, 0.95)*0.1).round(2) %>/10
+          </i>
         </font>
         <br>
-        <font size="5">
+        <font size="3">
           <%= sanitize link.description, tags: %w(b i u s a br)%>
         </font>
         <br>
-        <a href="<%= link.url %>" target="_blank" title="<%= link.title %>" ><img src="<%= link.generate_image(link) %>" class="miniaturka" ></a>
+        <a href="links/<%= link.id %>" title="<%= link.title %>" ><img src="<%= link.generate_image(link) %>" class="miniaturka" ></a>
         <br>
         <font size="4">
           <small class="author">Przesłano <%= time_ago_in_words(link.created_at) %> przez <%= link_to link.user.name, link.user %></small>
@@ -43,14 +45,17 @@
       </h2>
     
       <div class="btn-group">
-        <a class="btn btn-default btn-sm glyphicon glyphicon-eye-open eye" href="<%= link.url %>", target="_blank", title="Zobacz link"></a>
+        <%= link_to '', link.url, class: "btn btn-default btn-sm btn-outline glyphicon glyphicon-eye-open eye", title: "Zobacz link" %>
+        <%= link_to link, class: "btn btn-default btn-sm btn-outline", title: "Komentarze" do %>
+                <span class="glyphicon glyphicon-comment"></span>
+        <% end %>
         <% if user_signed_in? %>
-          <%= link_to like_link_path(link), method: :put, class: "btn btn-default btn-sm" do %>
-            <span class="glyphicon glyphicon-chevron-up"></span>
+          <%= link_to like_link_path(link), method: :put, class: "btn  btn-outline btn-default btn-sm" do %>
+            <span class="glyphicon glyphicon-thumbs-up"></span>
             <%= link.get_upvotes.size %>
           <% end %>
-          <%= link_to dislike_link_path(link), method: :put, class: "btn btn-default btn-sm" do %>
-            <span class="glyphicon glyphicon-chevron-down"></span>
+          <%= link_to dislike_link_path(link), method: :put, class: "btn  btn-outline btn-default btn-sm" do %>
+            <span class="glyphicon glyphicon-thumbs-down"></span>
             <%= link.get_downvotes.size %>
           <% end %>
         <% end %>
