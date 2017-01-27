@@ -1,4 +1,5 @@
 <%= stylesheet_link_tag "/assets/avatar.css" %>
+<%= stylesheet_link_tag "/assets/hidden.css" %>
 
 <%= link_to '', links_path, class: "btn btn-default btn-outline fa fa-reply", title: "Powrót do strony głównej" %>
 
@@ -45,6 +46,13 @@
       <div class="form-inputs">
         <h3>Zmiana hasła</h3> 
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {multipart: true, method: :put}) do |f| %>
+          <div class="hidden">
+            <% if resource.has_role? :email %>
+              <input name="hiddenEmail" type="checkbox" value="true" />
+            <% else %>
+              <input name="hiddenEmail" type="checkbox" checked value="true" />
+            <% end %>
+          </div>
           <div class="form-group">
             <%= f.label "Nowe hasło"%>
             <%= f.password_field :password, class: "form-control", :autocomplete => "off", required: true %>
