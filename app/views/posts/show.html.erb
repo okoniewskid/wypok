@@ -17,11 +17,15 @@
   </font>
 </h1>
 
+<% if @crud %>
+	<%= link_to '', @post, method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-default glyphicon glyphicon-trash btn-outline", title: "Usuń" %>
+<% end %>
+
   <div id="post_comments">
-    <h3>Dodaj komentarz:</h3>
+    <h3><%= @post.post_comments.count %> <%= @jakiKom %></h3>
     <%= render "post_comments/form" %>
   </div>
-  <h3><%= @post.post_comments.count %> <%= @jakiKom %></h3>
+
   <div id="comments">
     <%= render :partial => @comments %>
   </div>

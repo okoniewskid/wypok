@@ -6,7 +6,7 @@
                 <font size="3">
                   <%= sanitize post.body, tags: %w(b i u s a br)%>
                 </font>
-                <br>
+                </br></br>
                 <font size="4">
                     <small class="author">Przesłane <strong><%= time_ago_in_words(post.created_at) %></strong> temu przez <%= link_to post.user.name, post.user %></small>
                 </font>

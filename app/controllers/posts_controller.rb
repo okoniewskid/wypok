@@ -17,6 +17,29 @@ class PostsController < ApplicationController
     else
       @jakiKom = 'komentarze'
     end
+    if current_user
+      u = User.find(current_user.id)
+      if u.has_role? :admin
+        @crud = true
+      elsif @link.user === u
+        @crud = true
+      else
+        @crud = false
+      end
+    else
+      @crud = false
+    end
+    case
+      when params[:sortDate]
+        case params[:sortDate]
+          when "desc"
+            @comments = @comments.order('created_at DESC')
+            @sd = true;
+          when "asc"
+            @comments = @comments.order('created_at ASC')
+            @sd = false;
+        end
+    end
   end
 
   # GET /posts/new
