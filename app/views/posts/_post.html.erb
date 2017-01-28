@@ -1,0 +1,20 @@
+<%= div_for(post) do %>
+    <div class="post_wrapper">
+        <h2>
+            <%= link_to post.title, post %>
+            <p class="date">
+                <font size="3">
+                  <%= sanitize post.body, tags: %w(b i u s a br)%>
+                </font>
+                <br>
+                <font size="4">
+                    <small class="author">Przesłane <strong><%= time_ago_in_words(post.created_at) %></strong> temu przez <%= link_to post.user.name, post.user %></small>
+                </font>
+                <br>
+                <%= link_to post, class: "btn btn-default btn-sm btn-outline", title: "Komentarze" do %>
+                        <span class="glyphicon glyphicon-comment"></span>
+                <% end %>
+            </p>
+        </h2>
+      </div>
+<% end %>

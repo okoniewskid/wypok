@@ -1,6 +1,3 @@
-<%= stylesheet_link_tag "/assets/comment.css" %>
-<%= stylesheet_link_tag "/assets/link.css" %>
-
 <%= div_for(link) do %>
 	<% if @hashtagged %>
     <div class="comments_wrapper clearfix">
@@ -45,7 +42,9 @@
       </h2>
     
       <div class="btn-group">
-        <%= link_to '', link.url, class: "btn btn-default btn-sm btn-outline glyphicon glyphicon-eye-open eye", title: "Zobacz link" %>
+        <%= link_to link.url, class: "btn btn-default btn-sm btn-outline", title: "Zobacz link" do %>
+                <span class="glyphicon glyphicon-eye-open eye"></span>
+        <% end %>
         <%= link_to link, class: "btn btn-default btn-sm btn-outline", title: "Komentarze" do %>
                 <span class="glyphicon glyphicon-comment"></span>
         <% end %>

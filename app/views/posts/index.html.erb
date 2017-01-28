@@ -1,19 +1,8 @@
-<p id="notice"><%= notice %></p>
+<%= stylesheet_link_tag "/assets/comment.css" %>
+<%= stylesheet_link_tag "/assets/post.css" %>
 
-<h1>Posty</h1>
-
-    <% @posts.each do |post| %>
-      <div class="post_wrapper"
-        <h2 class="title"><%= link_to post.title, post %></h2>
-        <p class="date">
-          <font size="2">
-            <small>Przesłane <strong><%= time_ago_in_words(post.created_at) %></strong> temu przez <%= link_to post.user.name, post.user %></small>
-          </font>
-        </p>
-      </div>
-    <% end %>
-
-
-<br>
-
-<%= link_to 'Nowy post', new_post_path, class: "btn btn-primary" %>
+<h1>Mikroblog</h1>
+</br>
+<%= link_to 'Nowy wpis', new_post_path, class: "btn btn-primary" %>
+</br>
+<%= render :partial => @posts %>

@@ -29,7 +29,7 @@ class PostCommentsController < ApplicationController
 
     respond_to do |format|
       if @post_comment.save
-        format.html { redirect_to @post, notice: 'Post comment was successfully created.' }
+        format.html { redirect_to @post, notice: 'Komentarz został dodany.' }
         format.json { render :show, status: :created, location: @post_comment }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class PostCommentsController < ApplicationController
   def update
     respond_to do |format|
       if @post_comment.update(post_comment_params)
-        format.html { redirect_to @post_comment, notice: 'Post comment was successfully updated.' }
+        format.html { redirect_to @post_comment, notice: 'Komentarz został zmieniony.' }
         format.json { render :show, status: :ok, location: @post_comment }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class PostCommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @post_comment.destroy
     respond_to do |format|
-      format.html { redirect_to @post, notice: 'Post comment was successfully destroyed.' }
+      format.html { redirect_to @post, notice: 'Komentarz został usunięty.' }
       format.json { head :no_content }
     end
   end
