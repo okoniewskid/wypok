@@ -26,6 +26,7 @@ class PostCommentsController < ApplicationController
   def create
     @post = Post.find(params[:post_id])
     @post_comment = @post.post_comments.create(post_comment_params)
+    @post_comment.user = current_user
 
     respond_to do |format|
       if @post_comment.save
@@ -33,20 +34,6 @@ class PostCommentsController < ApplicationController
         format.json { render :show, status: :created, location: @post_comment }
       else
         format.html { render :new }
-        format.json { render json: @post_comment.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /post_comments/1
-  # PATCH/PUT /post_comments/1.json
-  def update
-    respond_to do |format|
-      if @post_comment.update(post_comment_params)
-        format.html { redirect_to @post_comment, notice: 'Komentarz został zmieniony.' }
-        format.json { render :show, status: :ok, location: @post_comment }
-      else
-        format.html { render :edit }
         format.json { render json: @post_comment.errors, status: :unprocessable_entity }
       end
     end

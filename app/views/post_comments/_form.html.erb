@@ -1,11 +1,6 @@
-<%= form_for([@post, @post.post_comments.build]) do |f| %>
-  <div class="form-group">
-    <%= f.label "Imię" %>
-    <%= f.text_field :name, class: "form-control", required: true %>
-  </div>
+<%= form_for([@post, PostComment.new]) do |f| %>
 
   <div class="form-group">
-    <%= f.label "Komentarz" %>
     <%= f.text_area :body, class: "form-control", required: true %>
   </div>
 

@@ -21,7 +21,7 @@ class PostsController < ApplicationController
       u = User.find(current_user.id)
       if u.has_role? :admin
         @crud = true
-      elsif @link.user === u
+      elsif @post.user === u
         @crud = true
       else
         @crud = false
