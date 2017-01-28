@@ -22,10 +22,12 @@
 	<%= link_to '', @post, method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-default glyphicon glyphicon-trash btn-outline", title: "Usuń" %>
 <% end %>
 
-  <div id="post_comments">
-    <h3><%= @post.post_comments.count %> <%= @jakiKom %></h3>
-    <%= render "post_comments/form" %>
-  </div>
+  <h3><%= @post.post_comments.count %> <%= @jakiKom %></h3>
+  <% if user_signed_in? %>
+    <div id="post_comments">
+      <%= render "post_comments/form" %>
+    </div>
+  <% end %>
 
   <div id="comments">
     <%= render :partial => @comments %>

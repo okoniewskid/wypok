@@ -47,7 +47,7 @@
                                   <% u = User.find(current_user.id) %>
                                   <% if u.has_role? :admin %>
                                     <%= link_to '',[@post, post_comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default glyphicon btn-circle btn-outline btn-xs glyphicon-remove", title: "Usuń" %>
-                                  <% elsif comment.user === u %>
+                                  <% elsif post_comment.user === u %>
                                     <%= link_to '',[@post, post_comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default glyphicon btn-circle btn-outline btn-xs glyphicon-remove", title: "Usuń" %>
                                   <% end %>
                                 <% end %>
