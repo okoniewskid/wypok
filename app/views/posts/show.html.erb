@@ -1,5 +1,9 @@
+<%= stylesheet_link_tag "/assets/comment.css" %>
+<%= stylesheet_link_tag "/assets/post.css" %>
+
 <%= link_to '', posts_path, class: "btn btn-default btn-outline fa fa-reply", title: "Powrót do strony z wpisami" %>
 
+<h1>
 <div id="post_content">
   <h1 class="title">
     <%= @post.title %>
@@ -8,15 +12,16 @@
   <p class="body">
     <%= @post.body %>
   </p>
-  <font size="2">
-    <small>Przesłane przez <%= link_to @post.user.name, @post.user %></small>
+  <font size="4">
+    <small>Przesłane <strong><%= time_ago_in_words(@post.created_at) %></strong> temu przez <%= link_to @post.user.name, @post.user %></small>
   </font>
+</h1>
 
   <div id="post_comments">
     <h3>Dodaj komentarz:</h3>
     <%= render "post_comments/form" %>
   </div>
-  <h3><%= @post.post_comments.count %> Komentarzy</h3>
+  <h3><%= @post.post_comments.count %> <%= @jakiKom %></h3>
   <div id="comments">
     <%= render :partial => @comments %>
   </div>
