@@ -1,5 +1,62 @@
 <%= div_for(post_comment) do %>
-    <div class="post_comment_content">
-        <p class="post_comment_body"><%= post_comment.body %></p>
-    </div>
+	<% if @hashtagged %>
+		<div class="comments_wrapper clearfix">
+			<div>
+				<h1><%= link_to post_comment.post.title, post_comment.post %></h1>
+				<div class="com-column">
+					<div class="com-row">
+						<div>
+							<%= link_to  image_tag(post_comment.user.avatar.url, class: "avatar-com"), post_comment.user %></br>
+							<div class="user-name"><strong><%= link_to post_comment.user.name, post_comment.user %></strong></div>
+						</div>
+						<div class="comment-container">
+							<div class="description-hashtag">
+								<p class="lead">
+									<%= sanitize post_comment.body, tags: %w(b i u s a img br) %>
+								</p>
+							</div>
+						</div>
+					</div>
+					<p><small>Przesłano <strong><%= time_ago_in_words(post_comment.created_at) %></strong> temu</small></p>
+				</div>
+			</div>
+		</div>
+	<% else %>
+		<div class="comments_wrapper clearfix">
+			<div> <!--  class="pull-left"  -->
+				<div class="com-column">
+					<% if post_comment.user === post_comment.post.user %>
+						<div class="com-row-op">
+					<% else %>
+						<div class="com-row">
+					<% end %>
+						<div>
+							<%= link_to  image_tag(post_comment.user.avatar.url, class: "avatar-com"), post_comment.user %></br>
+							<div class="user-name"><strong><%= link_to post_comment.user.name, post_comment.user %></strong></div>
+						</div>
+						<div class="comment-container">
+							<div class="description-com">
+								<p class="lead">
+									<font size="3">
+									<%= sanitize post_comment.body, tags: %w(b i u s a img br) %>
+									</font>
+								</p>
+							</div>
+							<div class="btn-group">
+                                <% if current_user %>
+                                  <% u = User.find(current_user.id) %>
+                                  <% if u.has_role? :admin %>
+                                    <%= link_to '',[@post, post_comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default glyphicon btn-circle btn-outline btn-xs glyphicon-remove", title: "Usuń" %>
+                                  <% elsif comment.user === u %>
+                                    <%= link_to '',[@post, post_comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default glyphicon btn-circle btn-outline btn-xs glyphicon-remove", title: "Usuń" %>
+                                  <% end %>
+                                <% end %>
+                              </div>
+						</div>
+					</div>
+					<p><small>Przesłano <strong><%= time_ago_in_words(post_comment.created_at) %></strong> temu</small></p>
+				</div>
+			</div>
+		</div>
+	<% end %>
 <% end %>
