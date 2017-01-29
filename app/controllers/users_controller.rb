@@ -82,7 +82,13 @@ include HashtagsHelper
       else
         @viewEmail = false
       end
-      @links = Link.all.where("user_id = "+params[:id]).paginate(:page => params[:page], :per_page => 10)
+      if params[:view] && params[:view] === "posts"
+        @vp = true
+        @links = Post.all.where("user_id = "+params[:id]).paginate(:page => params[:page], :per_page => 10)
+      else
+        @vp = false
+        @links = Link.all.where("user_id = "+params[:id]).paginate(:page => params[:page], :per_page => 10)
+      end
       case 
         when params[:search]
           @links = @links.search(params[:search])
@@ -98,44 +104,44 @@ include HashtagsHelper
                   @links= @links.all.order('created_at DESC')
                   @sd = false;
               end
-            when params[:sortName]
-              case params[:sortName]
-                when "asc"
-                  @links= @links.order('title ASC')
-                  @sn = true;
-                  @sd = false;
-                  @sv = false;
-                when "desc"
-                  @links= @links.order('title DESC')
-                  @sn = false;
-              end
-            when params[:sortVote]
-              case params[:sortVote]
-                when "desc"
-                  @links= @links.order('((cached_votes_up + 1.9208) / '+
-                  '(cached_votes_up + cached_votes_down) - 1.96 * '+
-                  '((cached_votes_up * cached_votes_down) / '+
-                  '(cached_votes_up + cached_votes_down) + 0.9604) / '+
-                  '(cached_votes_up + cached_votes_down)) / '+
-                  '(1 + 3.8416 / (cached_votes_up + cached_votes_down))  DESC')
-                  @sv = true;
-                  @sd = false;
-                  @sn = false;
-                when "asc"
-                  @links= @links.order('((cached_votes_up + 1.9208) / '+
-                  '(cached_votes_up + cached_votes_down) - 1.96 * '+
-                  '((cached_votes_up * cached_votes_down) / '+
-                  '(cached_votes_up + cached_votes_down) + 0.9604) / '+
-                  '(cached_votes_up + cached_votes_down)) / '+
-                  '(1 + 3.8416 / (cached_votes_up + cached_votes_down))  ASC')
-                  @sv = false;
-              end
-            else
-              @links= @links.all.order('created_at DESC')
-          end
-      else
-        @links= @links.all.order('created_at DESC')
-      end
+              when params[:sortName]
+                case params[:sortName]
+                  when "asc"
+                    @links= @links.order('title ASC')
+                    @sn = true;
+                    @sd = false;
+                    @sv = false;
+                  when "desc"
+                    @links= @links.order('title DESC')
+                    @sn = false;
+                end
+              when params[:sortVote]
+                case params[:sortVote]
+                  when "desc"
+                    @links= @links.order('((cached_votes_up + 1.9208) / '+
+                    '(cached_votes_up + cached_votes_down) - 1.96 * '+
+                    '((cached_votes_up * cached_votes_down) / '+
+                    '(cached_votes_up + cached_votes_down) + 0.9604) / '+
+                    '(cached_votes_up + cached_votes_down)) / '+
+                    '(1 + 3.8416 / (cached_votes_up + cached_votes_down))  DESC')
+                    @sv = true;
+                    @sd = false;
+                    @sn = false;
+                  when "asc"
+                    @links= @links.order('((cached_votes_up + 1.9208) / '+
+                    '(cached_votes_up + cached_votes_down) - 1.96 * '+
+                    '((cached_votes_up * cached_votes_down) / '+
+                    '(cached_votes_up + cached_votes_down) + 0.9604) / '+
+                    '(cached_votes_up + cached_votes_down)) / '+
+                    '(1 + 3.8416 / (cached_votes_up + cached_votes_down))  ASC')
+                    @sv = false;
+                end
+              else
+                @links= @links.all.order('created_at DESC')
+            end
+        else
+          @links= @links.all.order('created_at DESC')
+        end
       respond_to do |format|
           format.html
           format.js

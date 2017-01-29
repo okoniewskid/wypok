@@ -4,6 +4,7 @@
 <%= stylesheet_link_tag "/assets/pagination.css" %>
 <%= stylesheet_link_tag "/assets/user-links.css" %>
 <%= stylesheet_link_tag "/assets/search.css" %>
+<%= stylesheet_link_tag "/assets/hidden.css" %>
 
 <%= link_to '', links_path, class: "btn btn-default btn-outline fa fa-reply", title: "Powrót do strony głównej" %>
 
@@ -25,9 +26,23 @@
          <span class="text-center"><%= mail_to @user.email %></span>
       </div>
     <% end %>
+    <%= form_tag(@user, :method => "get") do %>
+      <% if @vp %>
+        <button type="submit" class="btn btn-default btn-sort btn-outline" name="view" value="links", title="Pokaż linki">Pokaż linki</button></br>
+      <% else %>
+        <button type="submit" class="btn btn-default btn-sort btn-outline" name="view" value="posts", title="Pokaż wpisy">Pokaż wpisy</button></br>
+      <% end %>
+    <% end %>
   </div>
   <div class="links-show">
     <%= form_tag(@user, :method => "get") do %>
+      <div class="hidden">
+        <% if @vp %>
+          <input name="view" type="checkbox" checked value="posts" />
+        <% else %>
+          <input name="view" type="checkbox" value="links" />
+        <% end %>
+      </div>
       <ul class="nav navbar-nav pull-left">
         <li>
           <div class="input-group">
@@ -50,10 +65,12 @@
         <% else %>
           <button type="submit" class="btn btn-default btn-sort btn-outline fa fa-arrow-down" name="sortName" value="asc", title="Sortuj rosnąco wg nazwy"> Nazwa</button></br>
         <% end %>
-        <% if @sv %>
-          <button type="submit" class="btn btn-default btn-sort btn-outline fa fa-arrow-down" name="sortVote" value="asc", title="Sortuj rosnąco wg oceny"> Ocena</button></br>
-        <% else %>
-          <button type="submit" class="btn btn-default btn-sort btn-outline fa fa-arrow-up" name="sortVote" value="desc", title="Sortuj malejąco wg oceny"> Ocena</button></br>
+        <% if !@vp %>
+          <% if @sv %>
+            <button type="submit" class="btn btn-default btn-sort btn-outline fa fa-arrow-down" name="sortVote" value="asc", title="Sortuj rosnąco wg oceny"> Ocena</button></br>
+          <% else %>
+            <button type="submit" class="btn btn-default btn-sort btn-outline fa fa-arrow-up" name="sortVote" value="desc", title="Sortuj malejąco wg oceny"> Ocena</button></br>
+          <% end %>
         <% end %>
       </div>
     <% end %>
