@@ -6,6 +6,10 @@
 
 <h1>Mikroblog</h1>
 </br>
+<% if current_user %>
+    <%= link_to 'Dodaj wpis', new_post_path, class: "btn btn-default" %>
+    </br></br>
+<% end %>
 <%= form_tag(posts_path, :method => "get") do %>
   <ul class="nav navbar-nav pull-left">
     <li>
@@ -32,10 +36,6 @@
   </div>
 <% end %>
 </br>
-<% if current_user %>
-    <%= link_to 'Nowy wpis', new_post_path, class: "btn btn-primary" %>
-    </br></br>
-<% end %>
 <%= will_paginate @posts, :previous_label => 'Poprzedni', :next_label => 'Następny', renderer: BootstrapPagination::Rails %>
 <%= render :partial => @posts %>
 <%= will_paginate @posts, :previous_label => 'Poprzedni', :next_label => 'Następny', renderer: BootstrapPagination::Rails %>
