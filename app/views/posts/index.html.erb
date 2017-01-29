@@ -36,4 +36,6 @@
     <%= link_to 'Nowy wpis', new_post_path, class: "btn btn-primary" %>
     </br></br>
 <% end %>
+<%= will_paginate @posts, :previous_label => 'Poprzedni', :next_label => 'Następny', renderer: BootstrapPagination::Rails %>
 <%= render :partial => @posts %>
+<%= will_paginate @posts, :previous_label => 'Poprzedni', :next_label => 'Następny', renderer: BootstrapPagination::Rails %>
