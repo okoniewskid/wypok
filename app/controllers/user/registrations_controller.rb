@@ -27,11 +27,17 @@ before_action :destroy_link_hashtag, only: [:destroy]
   private
   def destroy_link_hashtag
     @links = resource.links
+    @posts = resource.posts
     @dl = @links.length - 1
     for i in 0..@dl
       destroy_hashtaggables(@links[i].comments.pluck('id'), 'Comment')
     end
     destroy_hashtaggables(@links.pluck('id'), 'Link')
+    @dl = @posts.length - 1
+    for i in 0..@dl
+      destroy_hashtaggables(@posts[i].post_comments.pluck('id'), 'PostComment')
+    end
+    destroy_hashtaggables(@posts.pluck('id'), 'Post')
   end
 
   # GET /resource/sign_up

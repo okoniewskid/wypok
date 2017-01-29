@@ -1,7 +1,7 @@
 <%= link_to '', posts_path, class: "btn btn-default fa fa-reply", title: "Powrót do strony z wpisami" %>
 <% if current_user %>
     </br>
-    <h1>Dodaj Wpis</h1>
+    <h1>Dodaj wpis</h1>
     
     <%= render 'form', post: @post %>
 <% end %>

@@ -131,6 +131,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
+    destroy_hashtaggables(@comments.pluck('id'), 'PostComment')
     @post.destroy
     respond_to do |format|
       format.html { redirect_to posts_url, notice: 'Wpis został usunięty.' }
