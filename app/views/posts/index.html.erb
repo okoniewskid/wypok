@@ -5,6 +5,32 @@
 
 <h1>Mikroblog</h1>
 </br>
+<%= form_tag(posts_path, :method => "get") do %>
+  <ul class="nav navbar-nav pull-left">
+    <li>
+      <div class="input-group">
+        <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Szukaj" %>
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-default btn-outline"><span class="glyphicon glyphicon-search"></span></button>
+        </span>
+      </div>
+    </li>
+  </ul>
+  </br></br>
+  <div class="sort">
+    <% if @sd %>
+      <button type="submit" class="btn btn-default btn-sort btn-outline fa fa-arrow-up" name="sortDate" value="desc", title="Sortuj malejąco wg daty"> Data</button></br>
+    <% else %>
+      <button type="submit" class="btn btn-default btn-sort btn-outline fa fa-arrow-down" name="sortDate" value="asc", title="Sortuj rosnąco wg daty"> Data</button></br>
+    <% end %>
+    <% if @sn %>
+      <button type="submit" class="btn btn-default btn-sort btn-outline fa fa-arrow-up" name="sortName" value="desc", title="Sortuj malejąco wg nazwy"> Nazwa</button></br>
+    <% else %>
+      <button type="submit" class="btn btn-default btn-sort btn-outline fa fa-arrow-down" name="sortName" value="asc", title="Sortuj rosnąco wg nazwy"> Nazwa</button></br>
+    <% end %>
+  </div>
+<% end %>
+</br>
 <% if current_user %>
     <%= link_to 'Nowy wpis', new_post_path, class: "btn btn-primary" %>
     </br></br>

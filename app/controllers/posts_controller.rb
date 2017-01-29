@@ -4,7 +4,37 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all.order('created_at DESC')
+    @posts = Post.all
+    case 
+      when params[:search]
+        @posts = @posts.search(params[:search])
+        case
+          when params[:sortDate]
+            case params[:sortDate]
+              when "asc"
+                @posts= @posts.all.order('created_at ASC')
+                @sd = true;
+                @sn = false;
+              when "desc"
+                @posts= @posts.all.order('created_at DESC')
+                @sd = false;
+            end
+          when params[:sortName]
+            case params[:sortName]
+              when "asc"
+                @posts= @posts.order('title ASC')
+                @sn = true;
+                @sd = false;
+              when "desc"
+                @posts= @posts.order('title DESC')
+                @sn = false;
+            end
+          else
+            @posts= @posts.all.order('created_at DESC')
+        end
+      else
+        @posts= @posts.all.order('created_at DESC')
+      end
   end
 
   # GET /posts/1
