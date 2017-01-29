@@ -208,7 +208,7 @@ class LinksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_link
       @link = Link.find(params[:id])
-      @comments = @link.comments.paginate(page: params[:page], per_page: 3)
+      @comments = @link.comments.paginate(page: params[:page], per_page: 10)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
