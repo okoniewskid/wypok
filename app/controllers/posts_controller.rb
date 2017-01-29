@@ -82,11 +82,16 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = current_user.posts.build
+    if current_user
+      @post = current_user.posts.build
+    else
+      flash[:notice] = "Brak uprawnień!"
+    end
   end
 
   # GET /posts/1/edit
   def edit
+    flash[:notice] = "Brak dostępu!"
   end
 
   # POST /posts

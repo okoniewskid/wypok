@@ -138,10 +138,10 @@ include HashtagsHelper
                 end
               else
                 @links= @links.all.order('created_at DESC')
-            end
+          end
         else
           @links= @links.all.order('created_at DESC')
-        end
+      end
       respond_to do |format|
           format.html
           format.js
