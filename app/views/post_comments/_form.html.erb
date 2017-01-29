@@ -1,7 +1,14 @@
 <%= form_for([@post, PostComment.new]) do |f| %>
 
   <div class="form-group">
-    <%= f.text_area :body, class: "form-control", required: true %>
+    <%= f.text_area :body, id: "BIUSText",  class: "form-control", required: true %>
+    <div class="field">
+      <a id="boldButtom" class="btn btn-default btn-outline" title="Pogrubienie"><span class="fa fa-bold"></span></a>
+      <a id="italicButtom" class="btn btn-default btn-outline" title="Kursywa"><span class="fa fa-italic"></span></a>
+      <a id="underlineButtom" class="btn btn-default btn-outline" title="Podkreślenie"><span class="fa fa-underline"></span></a>
+      <a id="strikethroughButtom" class="btn btn-default btn-outline" title="Przekreślenie"><span class="fa fa-strikethrough"></span></a>
+      <a class="btn btn-default btn-outline" href="/pages/emoticons.html" target="_blank" title="Dostępne emotikony"><span class="fa fa-smile-o"></span></a>
+    </div>
   </div>
 
   <div class="actions">

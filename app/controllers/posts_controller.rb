@@ -1,5 +1,9 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  
+  include HashtagsHelper
+  include TextHelper
+  include EmojiParser
 
   # GET /posts
   # GET /posts.json
@@ -89,6 +93,10 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = current_user.posts.build(post_params)
+    @post.body = detokenize(@post.body)
+    @post.body = linkify_hashtags(@post.body)
+    @post.body = convertBIUS(@post.body)
+    @post.body = convertEnter(@post.body)
 
     respond_to do |format|
       if @post.save
