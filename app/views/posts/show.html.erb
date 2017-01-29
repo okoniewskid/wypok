@@ -1,6 +1,7 @@
 <%= stylesheet_link_tag "/assets/avatar.css" %>
 <%= stylesheet_link_tag "/assets/comment.css" %>
 <%= stylesheet_link_tag "/assets/post.css" %>
+<%= stylesheet_link_tag "/assets/pagination.css" %>
 
 <%= link_to '', posts_path, class: "btn btn-default btn-outline fa fa-reply", title: "Powrót do strony z wpisami" %>
 
@@ -40,4 +41,10 @@
   <div id="comments">
     <%= render :partial => @comments %>
   </div>
+  <div id="infinite-scrolling">
+    <%= will_paginate @comments, renderer: BootstrapPagination::Rails  %>
+  </div>
 </div>
+
+<%= javascript_include_tag "/assets/bius.js" %>
+<%= javascript_include_tag "/assets/pagination.js" %>

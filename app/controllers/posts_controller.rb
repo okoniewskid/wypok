@@ -47,6 +47,10 @@ class PostsController < ApplicationController
     else
       @jakiKom = 'komentarze'
     end
+    respond_to do |format|
+      format.html
+      format.js
+    end
     if current_user
       u = User.find(current_user.id)
       if u.has_role? :admin
