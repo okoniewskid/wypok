@@ -5,6 +5,10 @@ class Post < ApplicationRecord
     validates :title, presence: true
     validates :body, presence: true
     
+    include SimpleHashtag::Hashtaggable
+      
+    hashtaggable_attribute :body
+    
     def self.search(search)
         where("title LIKE ?", "%#{search}%") 
     end

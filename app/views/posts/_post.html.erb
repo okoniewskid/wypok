@@ -1,4 +1,25 @@
 <%= div_for(post) do %>
+	<% if @hashtagged %>
+    <div class="comments_wrapper clearfix">
+    	<div>
+    		<h1><%= link_to post.title, post %></h1>
+    		<div class="com-column">
+    			<div class="com-row">
+    				<div>
+    					<%= link_to  image_tag(post.user.avatar.url, class: "avatar-com"), post.user %></br>
+    					<div class="user-name"><strong><%= link_to post.user.name, post.user %></strong></div>
+    				</div>
+    				<div class="description-hashtag">
+    				  <p class="lead"><%= sanitize post.body, tags: %w(b i u s a img br) %></p></div>
+    				</div>
+    				<p>
+    				  <small>Przesłano <strong><%= time_ago_in_words(post.created_at) %></strong> temu</small>
+    				</p>
+    			</div>
+    		</div>
+    	</div>
+  	</div>
+  <% else %>
     <div class="post_wrapper">
         <h2>
             <%= link_to post.title, post %>
@@ -17,4 +38,5 @@
             </p>
         </h2>
       </div>
+    <% end %>
 <% end %>
