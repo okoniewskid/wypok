@@ -1,0 +1,18 @@
+.ul-wrap {
+  	list-style-type: none;
+   	display: flex;
+	flex-wrap: wrap;
+}
+
+
+@media screen and (max-device-width: 1920px) {
+	li {
+		flex-basis: 33%;
+	}
+}
+
+@media screen and (max-device-width: 1100px) {
+	li {
+		flex-basis: 50%;
+	}
+}
