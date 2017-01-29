@@ -1,52 +1,27 @@
 class PostCommentsController < ApplicationController
   before_action :set_post_comment, only: [:show, :edit, :update, :destroy]
-
-  # GET /post_comments
-  # GET /post_comments.json
-  def index
-    @post_comments = PostComment.all
-  end
-
-  # GET /post_comments/1
-  # GET /post_comments/1.json
-  def show
-  end
-
-  # GET /post_comments/new
-  def new
-    @post_comment = PostComment.new
-  end
-
-  # GET /post_comments/1/edit
-  def edit
-  end
+  
+  include EmojiHelper
+  include HashtagsHelper
+  include TextHelper
 
   # POST /post_comments
   # POST /post_comments.json
   def create
     @post = Post.find(params[:post_id])
-    @post_comment = @post.post_comments.create(post_comment_params)
+    @comment = @post.post_comments.create(post_comment_params)
+    @comment.body = emojify(@comment.body)
+    @comment.body = linkify_hashtags(@comment.body)
+    @comment.body = convertBIUS(@comment.body)
+    @comment.body = convertEnter(@comment.body)
+    @comment.user = current_user
 
     respond_to do |format|
-      if @post_comment.save
-        format.html { redirect_to @post, notice: 'Post comment was successfully created.' }
+      if @comment.save
+        format.html { redirect_to @post, notice: 'Komentarz został dodany.' }
         format.json { render :show, status: :created, location: @post_comment }
       else
         format.html { render :new }
-        format.json { render json: @post_comment.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /post_comments/1
-  # PATCH/PUT /post_comments/1.json
-  def update
-    respond_to do |format|
-      if @post_comment.update(post_comment_params)
-        format.html { redirect_to @post_comment, notice: 'Post comment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @post_comment }
-      else
-        format.html { render :edit }
         format.json { render json: @post_comment.errors, status: :unprocessable_entity }
       end
     end
@@ -58,7 +33,7 @@ class PostCommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @post_comment.destroy
     respond_to do |format|
-      format.html { redirect_to @post, notice: 'Post comment was successfully destroyed.' }
+      format.html { redirect_to @post, notice: 'Komentarz został usunięty.' }
       format.json { head :no_content }
     end
   end

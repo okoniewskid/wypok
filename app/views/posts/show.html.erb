@@ -1,21 +1,50 @@
+<%= stylesheet_link_tag "/assets/avatar.css" %>
+<%= stylesheet_link_tag "/assets/comment.css" %>
+<%= stylesheet_link_tag "/assets/post.css" %>
+<%= stylesheet_link_tag "/assets/pagination.css" %>
+
+<%= link_to '', posts_path, class: "btn btn-default btn-outline fa fa-reply", title: "Powrót do strony z wpisami" %>
+
+<h1>
 <div id="post_content">
   <h1 class="title">
     <%= @post.title %>
   </h1>
 
   <p class="body">
-    <%= @post.body %>
+    <%= sanitize  @post.body, tags: %w(b i u s a br) %>
   </p>
-  <font size="2">
-    <small>Przesłane przez <%= link_to @post.user.name, @post.user %></small>
+  <font size="4">
+    <small>Przesłane <strong><%= time_ago_in_words(@post.created_at) %></strong> temu przez <%= link_to @post.user.name, @post.user %></small>
   </font>
+</h1>
 
-  <div id="post_comments">
-    <h3><%= @post.post_comments.count %> Komentarzy</h3>
-    <%= render @post.post_comments %>
-  
-    <h3>Dodaj komentarz:</h3>
-    <%= render "post_comments/form" %>
+<% if @crud %>
+	<%= link_to '', @post, method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-default glyphicon glyphicon-trash btn-outline", title: "Usuń" %>
+<% end %>
+
+  <h3><%= @post.post_comments.count %> <%= @jakiKom %></h3>
+  <% if user_signed_in? %>
+    <div id="post_comments">
+      <%= render "post_comments/form" %>
+    </div>
+  <% end %>
+<%= form_tag(@link, :method => "get") do %>
+  <% if @sd %>
+    <button type="submit" class="btn btn-default btn-sort btn-outline fa fa-arrow-down" name="sortDate" value="asc", title="Sortuj rosnąco wg daty">Data</button></br>
+  <% else %>
+    <button type="submit" class="btn btn-default btn-sort btn-outline fa fa-arrow-up" name="sortDate" value="desc", title="Sortuj malejąco wg daty">Data</button></br>
+  <% end %>
+  </br>
+<% end %>
+
+  <div id="comments">
+    <%= render :partial => @comments %>
+  </div>
+  <div id="infinite-scrolling">
+    <%= will_paginate @comments, renderer: BootstrapPagination::Rails  %>
   </div>
 </div>
-<%= link_to 'Wróć', posts_path %>
+
+<%= javascript_include_tag "/assets/bius.js" %>
+<%= javascript_include_tag "/assets/pagination.js" %>

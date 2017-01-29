@@ -1,16 +1,10 @@
-<%= stylesheet_link_tag "/assets/comment.css" %>
-
 <%= div_for(comment) do %>
 	<% if @hashtagged %>
 		<div class="comments_wrapper clearfix">
 			<div>
 				<h1><%= link_to comment.link.title, comment.link %></h1>
 				<div class="com-column">
-					<% if comment.user === comment.link.user %>
-						<div class="com-row-op">
-					<% else %>
-						<div class="com-row">
-					<% end %>
+					<div class="com-row">
 						<div>
 							<%= link_to  image_tag(comment.user.avatar.url, class: "avatar-com"), comment.user %></br>
 							<div class="user-name"><strong><%= link_to comment.user.name, comment.user %></strong></div>
@@ -21,16 +15,6 @@
 									<%= sanitize comment.body, tags: %w(b i u s a img br) %>
 								</p>
 							</div>
-							<div class="btn-group">
-                <% if current_user %>
-                  <% u = User.find(current_user.id) %>
-                  <% if u.has_role? :admin %>
-                    <%= link_to '',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default glyphicon glyphicon-trash", title: "Usuń" %>
-                  <% elsif comment.user === u %>
-                    <%= link_to '',[@link, comment], method: :delete, data: { confirm: 'Na pewno?' }, class: "btn btn-sm btn-default glyphicon glyphicon-trash", title: "Usuń" %>
-                  <% end %>
-                <% end %>
-              </div>
 						</div>
 					</div>
 					<p><small>Przesłano <strong><%= time_ago_in_words(comment.created_at) %></strong> temu</small></p>
@@ -53,7 +37,9 @@
 						<div class="comment-container">
 							<div class="description-com">
 								<p class="lead">
+									<font size="3">
 									<%= sanitize comment.body, tags: %w(b i u s a img br) %>
+									</font>
 								</p>
 							</div>
 							<div class="btn-group">

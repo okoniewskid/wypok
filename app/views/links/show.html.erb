@@ -2,6 +2,7 @@
 <%= stylesheet_link_tag "/assets/miniature.css" %>
 <%= stylesheet_link_tag "/assets/pagination.css" %>
 <%= stylesheet_link_tag "/assets/link.css" %>
+<%= stylesheet_link_tag "/assets/comment.css" %>
 
 <%= link_to '', links_path, class: "btn btn-default btn-outline fa fa-reply", title: "Powrót do strony głównej" %>
 
@@ -66,9 +67,9 @@
     </div>
     <br>
     <%= f.submit "Dodaj komentarz", class: "btn btn-primary" %>
-  <% end %>  
+  <% end %> 
+  <br>
 <% end %>
-<br>
 <%= form_tag(@link, :method => "get") do %>
   <% if @sd %>
     <button type="submit" class="btn btn-default btn-sort btn-outline fa fa-arrow-down" name="sortDate" value="asc", title="Sortuj rosnąco wg daty">Data</button></br>

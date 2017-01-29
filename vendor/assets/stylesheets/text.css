@@ -1,9 +1,3 @@
 .small{
     size: 5px
 }
-
-@supports (-webkit-appearance: none) {
-    .input-group {
-    width: 20%;
-    }
-}

@@ -1,0 +1,7 @@
+
+@supports (-webkit-appearance: none)
+{
+    .input-group {
+    width: 20%;
+    }
+}

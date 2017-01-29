@@ -1,19 +1,42 @@
-<p id="notice"><%= notice %></p>
+<%= stylesheet_link_tag "/assets/comment.css" %>
+<%= stylesheet_link_tag "/assets/post.css" %>
+<%= stylesheet_link_tag "/assets/search.css" %>
 
-<h1>Posty</h1>
+<%= link_to '', links_path, class: "btn btn-default btn-outline fa fa-reply", title: "Powrót do strony głównej" %>
 
-    <% @posts.each do |post| %>
-      <div class="post_wrapper"
-        <h2 class="title"><%= link_to post.title, post %></h2>
-        <p class="date">
-          <font size="2">
-            <small>Przesłane <strong><%= time_ago_in_words(post.created_at) %></strong> temu przez <%= link_to post.user.name, post.user %></small>
-          </font>
-        </p>
+<h1>Mikroblog</h1>
+</br>
+<%= form_tag(posts_path, :method => "get") do %>
+  <ul class="nav navbar-nav pull-left">
+    <li>
+      <div class="input-group">
+        <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Szukaj" %>
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-default btn-outline"><span class="glyphicon glyphicon-search"></span></button>
+        </span>
       </div>
+    </li>
+  </ul>
+  </br></br>
+  <div class="sort">
+    <% if @sd %>
+      <button type="submit" class="btn btn-default btn-sort btn-outline fa fa-arrow-up" name="sortDate" value="desc", title="Sortuj malejąco wg daty"> Data</button></br>
+    <% else %>
+      <button type="submit" class="btn btn-default btn-sort btn-outline fa fa-arrow-down" name="sortDate" value="asc", title="Sortuj rosnąco wg daty"> Data</button></br>
     <% end %>
-
-
-<br>
-
-<%= link_to 'Nowy post', new_post_path, class: "btn btn-primary" %>
+    <% if @sn %>
+      <button type="submit" class="btn btn-default btn-sort btn-outline fa fa-arrow-up" name="sortName" value="desc", title="Sortuj malejąco wg nazwy"> Nazwa</button></br>
+    <% else %>
+      <button type="submit" class="btn btn-default btn-sort btn-outline fa fa-arrow-down" name="sortName" value="asc", title="Sortuj rosnąco wg nazwy"> Nazwa</button></br>
+    <% end %>
+  </div>
+<% end %>
+</br>
+<% if current_user %>
+    <%= link_to 'Nowy wpis', new_post_path, class: "btn btn-primary" %>
+    </br></br>
+<% end %>
+<%= will_paginate @posts, :previous_label => 'Poprzedni', :next_label => 'Następny', renderer: BootstrapPagination::Rails %>
+<%= render :partial => @posts %>
+<%= will_paginate @posts, :previous_label => 'Poprzedni', :next_label => 'Następny', renderer: BootstrapPagination::Rails %>
+<div id="dont-infinite-scrolling"></div>

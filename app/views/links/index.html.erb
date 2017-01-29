@@ -1,6 +1,7 @@
 <%= stylesheet_link_tag "/assets/link.css" %>
 <%= stylesheet_link_tag "/assets/miniature.css" %>
 <%= stylesheet_link_tag "/assets/text.css" %>
+<%= stylesheet_link_tag "/assets/search.css" %>
 
 <%= form_tag(links_path, :method => "get") do %>
   <ul class="nav navbar-nav pull-left">
@@ -35,3 +36,4 @@
 <%= will_paginate @links, :previous_label => 'Poprzedni', :next_label => 'Następny', renderer: BootstrapPagination::Rails %>
 <%= render :partial => @links %>
 <%= will_paginate @links, :previous_label => 'Poprzedni', :next_label => 'Następny', renderer: BootstrapPagination::Rails %>
+<div id="dont-infinite-scrolling"></div>

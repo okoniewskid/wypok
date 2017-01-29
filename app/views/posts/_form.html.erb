@@ -17,8 +17,8 @@
   </div>
 
   <div class="field">
-      <%= f.label "Zawartość" %>
-      <%= f.text_area :body, class: "form-control", id:"BIUSText" %>
+      <%= f.label "Treść" %>
+      <%= f.text_area :body, id:"BIUSText", class: "form-control", required: true %>
       <a id="boldButtom" class="btn btn-default" title="Pogrubienie"><span class="fa fa-bold"></span></a>
       <a id="italicButtom" class="btn btn-default" title="Kursywa"><span class="fa fa-italic"></span></a>
       <a id="underlineButtom" class="btn btn-default" title="Podkreślenie"><span class="fa fa-underline"></span></a>
@@ -27,6 +27,8 @@
     </div>
 
   <div class="form-group">
-    <%= f.submit "Wyślij", class: "btn btn-lg btn-primary" %>
+    <%= f.submit "Wyślij", class: "btn btn-primary" %>
   </div>
 <% end %>
+
+<%= javascript_include_tag "/assets/bius.js" %>
