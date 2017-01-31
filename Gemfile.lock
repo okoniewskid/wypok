@@ -14,14 +14,6 @@ GIT
     will_paginate-bootstrap (1.0.1)
       will_paginate (>= 3.0.3)
 
-GIT
-  remote: https://github.com/mongodb/mongoid.git
-  revision: eecad37d2726e673fa0d6a566801e1d8780b5038
-  specs:
-    mongoid (6.1.0)
-      activemodel (~> 5.0)
-      mongo (~> 2.4)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -74,7 +66,6 @@ GEM
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
-    bson (4.2.0)
     builder (3.2.2)
     byebug (9.0.6)
     capybara (2.11.0)
@@ -162,8 +153,6 @@ GEM
     mimemagic (0.3.2)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
-    mongo (2.4.0)
-      bson (~> 4.2.0)
     multi_json (1.12.1)
     net-http-persistent (2.9.4)
     net_http_timeout_errors (0.3.0)
@@ -180,6 +169,7 @@ GEM
       cocaine (~> 0.5.5)
       mime-types
       mimemagic (~> 0.3.0)
+    pg (0.18.2)
     public_suffix (2.0.5)
     puma (3.6.2)
     rack (2.0.1)
@@ -328,8 +318,8 @@ DEPENDENCIES
   jquery-rails
   link_thumbnailer
   listen (~> 3.0.5)
-  mongoid!
   paperclip (~> 5.0.0)
+  pg (= 0.18.2)
   puma
   rails (= 5.0.0, < 5.1)
   rails-controller-testing (~> 0.0.3)
