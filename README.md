@@ -14,4 +14,4 @@ Projekt zespołowy: Wypok
         Michał Tyczyński
         Krystian Szewczyk
         
-    https://wypok-romety2.c9users.io
+    Link: https://wypok-romety2.c9users.io
