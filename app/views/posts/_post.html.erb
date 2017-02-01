@@ -23,6 +23,7 @@
     <div class="post_wrapper">
         <h2>
             <%= link_to post.title, post %>
+    		</br></br>
             <p class="date">
                 <font size="3">
                   <%= sanitize post.body, tags: %w(b i u s a br)%>
